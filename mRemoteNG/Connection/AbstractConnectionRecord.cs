@@ -772,8 +772,8 @@ namespace mRemoteNG.Connection
         }
 
         [LocalizedAttributes.LocalizedCategory(nameof(Language.Appearance), 5),
-         LocalizedAttributes.LocalizedDisplayName(nameof(Language.DisableCursorShadow)),
-         LocalizedAttributes.LocalizedDescription(nameof(Language.PropertyDescriptionDisableCursorShadow)),
+         LocalizedAttributes.LocalizedDisplayName(nameof(Language.DisableCursorBlinking)),
+         LocalizedAttributes.LocalizedDescription(nameof(Language.PropertyDescriptionDisableCursorBlinking)),
          TypeConverter(typeof(MiscTools.YesNoTypeConverter)),
          AttributeUsedInProtocol(ProtocolType.RDP)]
         public bool DisableCursorBlinking
