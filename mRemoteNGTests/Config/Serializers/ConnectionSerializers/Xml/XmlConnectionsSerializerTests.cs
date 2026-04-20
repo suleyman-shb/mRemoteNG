@@ -50,6 +50,26 @@ public class XmlConnectionsSerializerTests
         Assert.That(connectionNode, Is.Not.Null);
     }
 
+    [Test]
+    public void ConnectionFrameColorSerializedCorrectly()
+    {
+        var connectionInfo = new ConnectionInfo { Name = "myConnection", ConnectionFrameColor = ConnectionFrameColor.Red };
+        var serializedConnections = _serializer.Serialize(connectionInfo);
+        var xdoc = XDocument.Parse(serializedConnections);
+        var attributeValue = xdoc.Root?.Element("Node")?.Attribute("ConnectionFrameColor")?.Value;
+        Assert.That(attributeValue, Is.EqualTo(ConnectionFrameColor.Red.ToString()));
+    }
+
+    [Test]
+    public void InheritConnectionFrameColorSerializedCorrectly()
+    {
+        var connectionInfo = new ConnectionInfo { Name = "myConnection", Inheritance = { ConnectionFrameColor = true } };
+        var serializedConnections = _serializer.Serialize(connectionInfo);
+        var xdoc = XDocument.Parse(serializedConnections);
+        var attributeValue = xdoc.Root?.Element("Node")?.Attribute("InheritConnectionFrameColor")?.Value;
+        Assert.That(attributeValue, Is.EqualTo("true"));
+    }
+
     [TestCase("Username", "")]
     [TestCase("Domain", "")]
     [TestCase("Password", "")]
