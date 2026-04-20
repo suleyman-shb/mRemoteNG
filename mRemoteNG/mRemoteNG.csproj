@@ -113,7 +113,7 @@
     <None Remove="buildenv.tmp" />
     <None Remove="UI\Font\HandelGotDBol.ttf" />
   </ItemGroup>
-  <ItemGroup Condition="'$(OS)' == 'Windows_NT'">
+  <ItemGroup>
     <COMReference Include="MSTSCLib">
       <WrapperTool>aximp</WrapperTool>
       <VersionMinor>0</VersionMinor>
