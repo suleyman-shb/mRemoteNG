@@ -1462,6 +1462,9 @@ If you run into such an error, please create a new connection file!</value>
   <data name="RdpGatewayNotSupported" xml:space="preserve">
     <value>RDP Gateway is not supported!</value>
   </data>
+  <data name="MaxSimultaneousConnections" xml:space="preserve">
+    <value>Maximum simultaneous connections:</value>
+  </data>
   <data name="RdpReconnectCount" xml:space="preserve">
     <value>RDP reconnect count:</value>
   </data>
