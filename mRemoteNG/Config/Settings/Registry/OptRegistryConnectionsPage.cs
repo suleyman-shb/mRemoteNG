@@ -63,6 +63,11 @@ namespace mRemoteNG.Config.Settings.Registry
         /// </summary>
         public WinRegistryEntry<int> AutoSaveEveryMinutes { get; private set; }
 
+        /// <summary>
+        /// Specifies the maximum number of connections to open at once.
+        /// </summary>
+        public WinRegistryEntry<int> MaxBulkOpenCount { get; private set; }
+
         public OptRegistryConnectionsPage()
         {
             RegistryHive hive = WindowsRegistryInfo.Hive;
@@ -79,6 +84,7 @@ namespace mRemoteNG.Config.Settings.Registry
             RdpReconnectionCount = new WinRegistryEntry<int>(hive, subKey, nameof(RdpReconnectionCount)).Read();
             ConRDPOverallConnectionTimeout = new WinRegistryEntry<int>(hive, subKey, nameof(ConRDPOverallConnectionTimeout)).Read();
             AutoSaveEveryMinutes = new WinRegistryEntry<int>(hive, subKey, nameof(AutoSaveEveryMinutes)).Read();
+            MaxBulkOpenCount = new WinRegistryEntry<int>(hive, subKey, nameof(MaxBulkOpenCount)).Read();
 
             SetupValidation();
             Apply();
@@ -98,6 +104,10 @@ namespace mRemoteNG.Config.Settings.Registry
             int numAutoSaveMin = (int)connectionsPage.numAutoSave.Minimum;
             int numAutoSaveMax = (int)connectionsPage.numAutoSave.Maximum;
             AutoSaveEveryMinutes.SetValidation(numAutoSaveMin, numAutoSaveMax);
+
+            int numMaxBulkOpenCountMin = (int)connectionsPage.numMaxBulkOpenCount.Minimum;
+            int numMaxBulkOpenCountMax = (int)connectionsPage.numMaxBulkOpenCount.Maximum;
+            MaxBulkOpenCount.SetValidation(numMaxBulkOpenCountMin, numMaxBulkOpenCountMax);
 
             int RdpReconnectionCountMin = (int)connectionsPage.numRdpReconnectionCount.Minimum;
             int RdpReconnectionCountMax = (int)connectionsPage.numRdpReconnectionCount.Maximum;
@@ -120,6 +130,7 @@ namespace mRemoteNG.Config.Settings.Registry
             ApplyRdpReconnectionCount();
             ApplyConRDPOverallConnectionTimeout();
             ApplyAutoSaveEveryMinutes();
+            ApplyMaxBulkOpenCount();
         }
 
         private void ApplySingleClickOnConnectionOpensIt()
@@ -186,6 +197,12 @@ namespace mRemoteNG.Config.Settings.Registry
         {
             if (AutoSaveEveryMinutes.IsValid)
                 Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = AutoSaveEveryMinutes.Value;
+        }
+
+        private void ApplyMaxBulkOpenCount()
+        {
+            if (MaxBulkOpenCount.IsValid)
+                Properties.Settings.Default.MaxBulkOpenCount = MaxBulkOpenCount.Value;
         }
     }
 }
