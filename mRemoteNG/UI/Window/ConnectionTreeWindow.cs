@@ -366,9 +366,20 @@ namespace mRemoteNG.UI.Window
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
-                    if (SelectedNode == null)
+                    var selectedObjects = ConnectionTree.SelectedObjects;
+                    if (selectedObjects == null || selectedObjects.Count == 0)
                         return;
-                    Runtime.ConnectionInitiator.OpenConnection(SelectedNode);
+
+                    var connectionsToOpen = selectedObjects.OfType<ConnectionInfo>()
+                                                           .Where(node => node.GetTreeNodeType() == TreeNodeType.Connection ||
+                                                                          node.GetTreeNodeType() == TreeNodeType.PuttySession)
+                                                           .Take(Settings.Default.MaxSimultaneousConnections)
+                                                           .ToList();
+
+                    foreach (var connection in connectionsToOpen)
+                    {
+                        Runtime.ConnectionInitiator.OpenConnection(connection);
+                    }
                 }
                 else if (e.Control && e.KeyCode == Keys.F)
                 {
