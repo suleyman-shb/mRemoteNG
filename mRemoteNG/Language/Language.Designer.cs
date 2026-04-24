@@ -2181,6 +2181,24 @@ namespace mRemoteNG.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum simultaneous connections (bulk-open):.
+        /// </summary>
+        internal static string MaxBulkOpenConnections {
+            get {
+                return ResourceManager.GetString("MaxBulkOpenConnections", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You are about to open {0} connections. Are you sure you want to continue?.
+        /// </summary>
+        internal static string QuestBulkOpenConnections {
+            get {
+                return ResourceManager.GetString("QuestBulkOpenConnections", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Expand all folders.
         /// </summary>
         internal static string ExpandAllFolders {

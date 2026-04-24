@@ -366,9 +366,33 @@ namespace mRemoteNG.UI.Window
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
-                    if (SelectedNode == null)
+                    var selectedObjects = ConnectionTree.SelectedObjects;
+                    if (selectedObjects == null || selectedObjects.Count == 0)
                         return;
-                    Runtime.ConnectionInitiator.OpenConnection(SelectedNode);
+
+                    var connectionsToOpen = selectedObjects.OfType<ConnectionInfo>()
+                                                           .Where(node => node.GetTreeNodeType() == TreeNodeType.Connection ||
+                                                                          node.GetTreeNodeType() == TreeNodeType.PuttySession)
+                                                           .ToList();
+
+                    if (connectionsToOpen.Count == 0)
+                        return;
+
+                    if (connectionsToOpen.Count > Settings.Default.MaxBulkOpenConnections)
+                    {
+                        var result = CTaskDialog.MessageBox(Application.ProductName,
+                                                            string.Format(Language.QuestBulkOpenConnections, connectionsToOpen.Count),
+                                                            "",
+                                                            ETaskDialogButtons.YesNo,
+                                                            ESysIcons.Question);
+                        if (result != DialogResult.Yes)
+                            return;
+                    }
+
+                    foreach (var connection in connectionsToOpen)
+                    {
+                        Runtime.ConnectionInitiator.OpenConnection(connection);
+                    }
                 }
                 else if (e.Control && e.KeyCode == Keys.F)
                 {

@@ -62,6 +62,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkDoNotTrimUsername.Text = Language.DoNotTrimUsername;
             chkSlowClickRename.Text = Language.SlowClickRenameEnabled;
 
+            lblMaxBulkOpenConnections.Text = Language.MaxBulkOpenConnections;
             lblRdpReconnectionCount.Text = Language.RdpReconnectCount;
             lblRDPConTimeout.Text = Language.RdpOverallConnectionTimeout;
             lblAutoSave1.Text = Language.AutoSaveEvery;
@@ -87,6 +88,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkDoNotTrimUsername.Checked = Settings.Default.DoNotTrimUsername;
             chkSlowClickRename.Checked = Settings.Default.SlowClickRenameEnabled;
 
+            numMaxBulkOpenConnections.Value = Convert.ToDecimal(Settings.Default.MaxBulkOpenConnections);
             numRdpReconnectionCount.Value = Convert.ToDecimal(Settings.Default.RdpReconnectionCount);
             numRDPConTimeout.Value = Convert.ToDecimal(Settings.Default.ConRDPOverallConnectionTimeout);
             numAutoSave.Value = Convert.ToDecimal(Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes);
@@ -140,6 +142,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             Properties.Settings.Default.DoNotTrimUsername = chkDoNotTrimUsername.Checked;
             Properties.Settings.Default.SlowClickRenameEnabled = chkSlowClickRename.Checked;
 
+            Properties.Settings.Default.MaxBulkOpenConnections = (int)numMaxBulkOpenConnections.Value;
             Properties.Settings.Default.RdpReconnectionCount = (int)numRdpReconnectionCount.Value;
             Properties.Settings.Default.ConRDPOverallConnectionTimeout = (int)numRDPConTimeout.Value;
             Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = (int)numAutoSave.Value;
@@ -214,6 +217,9 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             if (pageRegSettingsInstance.SlowClickRenameEnabled.IsSet)
                 DisableControl(chkSlowClickRename);
 
+            if (pageRegSettingsInstance.MaxBulkOpenConnections.IsSet)
+                DisableControl(numMaxBulkOpenConnections);
+
             if (pageRegSettingsInstance.RdpReconnectionCount.IsSet)
                 DisableControl(numRdpReconnectionCount);
 
@@ -239,6 +245,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
                 || pageRegSettingsInstance.UseFilterSearch.IsSet
                 || pageRegSettingsInstance.PlaceSearchBarAboveConnectionTree.IsSet
                 || pageRegSettingsInstance.DoNotTrimUsername.IsSet
+                || pageRegSettingsInstance.MaxBulkOpenConnections.IsSet
                 || pageRegSettingsInstance.RdpReconnectionCount.IsSet
                 || pageRegSettingsInstance.ConRDPOverallConnectionTimeout.IsSet
                 || pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet;

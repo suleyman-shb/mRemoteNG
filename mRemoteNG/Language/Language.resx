@@ -776,6 +776,12 @@ See the Microsoft Support article at http://support.microsoft.com/kb/811833 for 
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="MaxBulkOpenConnections" xml:space="preserve">
+    <value>Maximum simultaneous connections (bulk-open):</value>
+  </data>
+  <data name="QuestBulkOpenConnections" xml:space="preserve">
+    <value>You are about to open {0} connections. Are you sure you want to continue?</value>
+  </data>
   <data name="ExternalToolsToolbar" xml:space="preserve">
     <value>External Tools Toolbar</value>
   </data>

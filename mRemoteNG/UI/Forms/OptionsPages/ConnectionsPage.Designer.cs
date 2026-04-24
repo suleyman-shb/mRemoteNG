@@ -42,6 +42,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkSingleClickOnOpenedConnectionSwitchesToIt = new MrngCheckBox();
             lblAutoSave1 = new MrngLabel();
             numAutoSave = new MrngNumericUpDown();
+            numMaxBulkOpenConnections = new MrngNumericUpDown();
+            lblMaxBulkOpenConnections = new MrngLabel();
             pnlConfirmCloseConnection = new System.Windows.Forms.Panel();
             lblClosingConnections = new MrngLabel();
             radCloseWarnAll = new MrngRadioButton();
@@ -266,14 +268,17 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             tableLayoutPanel2.Controls.Add(lblAutoSave1, 0, 2);
             tableLayoutPanel2.Controls.Add(lblRDPConTimeout, 0, 1);
             tableLayoutPanel2.Controls.Add(numRDPConTimeout, 1, 1);
+            tableLayoutPanel2.Controls.Add(lblMaxBulkOpenConnections, 0, 3);
+            tableLayoutPanel2.Controls.Add(numMaxBulkOpenConnections, 1, 3);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             tableLayoutPanel2.Location = new System.Drawing.Point(0, 236);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            tableLayoutPanel2.Size = new System.Drawing.Size(610, 79);
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(610, 105);
             tableLayoutPanel2.TabIndex = 9;
             // 
             // chkPlaceSearchBarAboveConnectionTree
@@ -354,6 +359,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRegistrySettingsUsedInfo.Text = "Some settings are configured by your Administrator. Please contact your administrator for more information.";
             lblRegistrySettingsUsedInfo.Visible = false;
             // 
+            // numMaxBulkOpenConnections
+            //
+            numMaxBulkOpenConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxBulkOpenConnections.Location = new System.Drawing.Point(277, 81);
+            numMaxBulkOpenConnections.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxBulkOpenConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxBulkOpenConnections.Name = "numMaxBulkOpenConnections";
+            numMaxBulkOpenConnections.Size = new System.Drawing.Size(53, 22);
+            numMaxBulkOpenConnections.TabIndex = 1;
+            numMaxBulkOpenConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
+            // lblMaxBulkOpenConnections
+            //
+            lblMaxBulkOpenConnections.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxBulkOpenConnections.Location = new System.Drawing.Point(3, 78);
+            lblMaxBulkOpenConnections.Name = "lblMaxBulkOpenConnections";
+            lblMaxBulkOpenConnections.Size = new System.Drawing.Size(268, 26);
+            lblMaxBulkOpenConnections.TabIndex = 0;
+            lblMaxBulkOpenConnections.Text = "Maximum simultaneous connections (bulk-open):";
+            lblMaxBulkOpenConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
             // ConnectionsPage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -390,6 +416,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
         internal Controls.MrngNumericUpDown numRDPConTimeout;
         internal Controls.MrngLabel lblRDPConTimeout;
         internal Controls.MrngNumericUpDown numRdpReconnectionCount;
+        internal Controls.MrngNumericUpDown numMaxBulkOpenConnections;
+        internal Controls.MrngLabel lblMaxBulkOpenConnections;
         internal MrngCheckBox chkSaveConnectionsAfterEveryEdit;
         private MrngCheckBox chkUseFilterSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
