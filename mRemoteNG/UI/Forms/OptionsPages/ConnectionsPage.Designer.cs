@@ -37,6 +37,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRDPConTimeout = new MrngLabel();
             lblRdpReconnectionCount = new MrngLabel();
             numRdpReconnectionCount = new MrngNumericUpDown();
+            lblMaxBulkConnect = new MrngLabel();
+            numMaxBulkConnect = new MrngNumericUpDown();
             chkSingleClickOnConnectionOpensIt = new MrngCheckBox();
             chkHostnameLikeDisplayName = new MrngCheckBox();
             chkSingleClickOnOpenedConnectionSwitchesToIt = new MrngCheckBox();
@@ -59,6 +61,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRegistrySettingsUsedInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numMaxBulkConnect).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).BeginInit();
             pnlConfirmCloseConnection.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -106,6 +109,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numRdpReconnectionCount.TabIndex = 1;
             numRdpReconnectionCount.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
+            // lblMaxBulkConnect
+            //
+            lblMaxBulkConnect.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxBulkConnect.Location = new System.Drawing.Point(3, 78);
+            lblMaxBulkConnect.Name = "lblMaxBulkConnect";
+            lblMaxBulkConnect.Size = new System.Drawing.Size(268, 26);
+            lblMaxBulkConnect.TabIndex = 2;
+            lblMaxBulkConnect.Text = "Maximum simultaneous connections:";
+            lblMaxBulkConnect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxBulkConnect
+            //
+            numMaxBulkConnect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxBulkConnect.Location = new System.Drawing.Point(277, 81);
+            numMaxBulkConnect.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxBulkConnect.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxBulkConnect.Name = "numMaxBulkConnect";
+            numMaxBulkConnect.Size = new System.Drawing.Size(53, 22);
+            numMaxBulkConnect.TabIndex = 3;
+            numMaxBulkConnect.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // chkSingleClickOnConnectionOpensIt
             // 
             chkSingleClickOnConnectionOpensIt._mice = MrngCheckBox.MouseState.OUT;
@@ -266,14 +290,17 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             tableLayoutPanel2.Controls.Add(lblAutoSave1, 0, 2);
             tableLayoutPanel2.Controls.Add(lblRDPConTimeout, 0, 1);
             tableLayoutPanel2.Controls.Add(numRDPConTimeout, 1, 1);
+            tableLayoutPanel2.Controls.Add(lblMaxBulkConnect, 0, 3);
+            tableLayoutPanel2.Controls.Add(numMaxBulkConnect, 1, 3);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             tableLayoutPanel2.Location = new System.Drawing.Point(0, 236);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            tableLayoutPanel2.Size = new System.Drawing.Size(610, 79);
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(610, 105);
             tableLayoutPanel2.TabIndex = 9;
             // 
             // chkPlaceSearchBarAboveConnectionTree
@@ -366,6 +393,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             Size = new System.Drawing.Size(610, 513);
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).EndInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMaxBulkConnect).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).EndInit();
             pnlConfirmCloseConnection.ResumeLayout(false);
             pnlConfirmCloseConnection.PerformLayout();
@@ -390,6 +418,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
         internal Controls.MrngNumericUpDown numRDPConTimeout;
         internal Controls.MrngLabel lblRDPConTimeout;
         internal Controls.MrngNumericUpDown numRdpReconnectionCount;
+        internal Controls.MrngLabel lblMaxBulkConnect;
+        internal Controls.MrngNumericUpDown numMaxBulkConnect;
         internal MrngCheckBox chkSaveConnectionsAfterEveryEdit;
         private MrngCheckBox chkUseFilterSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;

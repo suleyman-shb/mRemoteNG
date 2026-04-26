@@ -2401,5 +2401,17 @@ namespace mRemoteNG.Properties {
                 this["ConDefaultRedirectDiskDrivesCustom"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MaxBulkConnect {
+            get {
+                return ((int)(this["MaxBulkConnect"]));
+            }
+            set {
+                this["MaxBulkConnect"] = value;
+            }
+        }
     }
 }
