@@ -63,6 +63,11 @@ namespace mRemoteNG.Config.Settings.Registry
         /// </summary>
         public WinRegistryEntry<int> AutoSaveEveryMinutes { get; private set; }
 
+        /// <summary>
+        /// Specifies the maximum number of simultaneous connections allowed during bulk open operations.
+        /// </summary>
+        public WinRegistryEntry<int> MaxSimultaneousBulkConnections { get; private set; }
+
         public OptRegistryConnectionsPage()
         {
             RegistryHive hive = WindowsRegistryInfo.Hive;
@@ -79,6 +84,7 @@ namespace mRemoteNG.Config.Settings.Registry
             RdpReconnectionCount = new WinRegistryEntry<int>(hive, subKey, nameof(RdpReconnectionCount)).Read();
             ConRDPOverallConnectionTimeout = new WinRegistryEntry<int>(hive, subKey, nameof(ConRDPOverallConnectionTimeout)).Read();
             AutoSaveEveryMinutes = new WinRegistryEntry<int>(hive, subKey, nameof(AutoSaveEveryMinutes)).Read();
+            MaxSimultaneousBulkConnections = new WinRegistryEntry<int>(hive, subKey, nameof(MaxSimultaneousBulkConnections)).Read();
 
             SetupValidation();
             Apply();
@@ -102,6 +108,10 @@ namespace mRemoteNG.Config.Settings.Registry
             int RdpReconnectionCountMin = (int)connectionsPage.numRdpReconnectionCount.Minimum;
             int RdpReconnectionCountMax = (int)connectionsPage.numRdpReconnectionCount.Maximum;
             RdpReconnectionCount.SetValidation(RdpReconnectionCountMin, RdpReconnectionCountMax);
+
+            int MaxSimultaneousBulkConnectionsMin = (int)connectionsPage.numMaxSimultaneousBulkConnections.Minimum;
+            int MaxSimultaneousBulkConnectionsMax = (int)connectionsPage.numMaxSimultaneousBulkConnections.Maximum;
+            MaxSimultaneousBulkConnections.SetValidation(MaxSimultaneousBulkConnectionsMin, MaxSimultaneousBulkConnectionsMax);
         }
 
         /// <summary>
@@ -120,6 +130,13 @@ namespace mRemoteNG.Config.Settings.Registry
             ApplyRdpReconnectionCount();
             ApplyConRDPOverallConnectionTimeout();
             ApplyAutoSaveEveryMinutes();
+            ApplyMaxSimultaneousBulkConnections();
+        }
+
+        private void ApplyMaxSimultaneousBulkConnections()
+        {
+            if (MaxSimultaneousBulkConnections.IsValid)
+                Properties.Settings.Default.MaxSimultaneousBulkConnections = MaxSimultaneousBulkConnections.Value;
         }
 
         private void ApplySingleClickOnConnectionOpensIt()

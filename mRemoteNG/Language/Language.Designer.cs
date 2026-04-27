@@ -7404,5 +7404,14 @@ namespace mRemoteNG.Resources.Language {
                 return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum simultaneous connections when bulk opening:.
+        /// </summary>
+        internal static string MaxSimultaneousBulkConnections {
+            get {
+                return ResourceManager.GetString("MaxSimultaneousBulkConnections", resourceCulture);
+            }
+        }
     }
 }
