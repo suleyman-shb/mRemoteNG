@@ -366,9 +366,21 @@ namespace mRemoteNG.UI.Window
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
-                    if (SelectedNode == null)
+
+                    if (ConnectionTree.SelectedObjects == null)
                         return;
-                    Runtime.ConnectionInitiator.OpenConnection(SelectedNode);
+
+                    foreach (var selectedObject in ConnectionTree.SelectedObjects)
+                    {
+                        if (selectedObject is ContainerInfo containerInfo)
+                        {
+                            Runtime.ConnectionInitiator.OpenConnection(containerInfo);
+                        }
+                        else if (selectedObject is ConnectionInfo connectionInfo)
+                        {
+                            Runtime.ConnectionInitiator.OpenConnection(connectionInfo);
+                        }
+                    }
                 }
                 else if (e.Control && e.KeyCode == Keys.F)
                 {
