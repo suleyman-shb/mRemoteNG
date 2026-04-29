@@ -59,6 +59,11 @@ namespace mRemoteNG.Config.Settings.Registry
         public WinRegistryEntry<int> ConRDPOverallConnectionTimeout { get; private set; }
 
         /// <summary>
+        /// Specifies the maximum number of connections to open in bulk.
+        /// </summary>
+        public WinRegistryEntry<int> MaxConnectionsToOpenBulk { get; private set; }
+
+        /// <summary>
         /// Specifies the autosave interval in minutes. 
         /// </summary>
         public WinRegistryEntry<int> AutoSaveEveryMinutes { get; private set; }
@@ -78,6 +83,7 @@ namespace mRemoteNG.Config.Settings.Registry
             SlowClickRenameEnabled = new WinRegistryEntry<bool>(hive, subKey, nameof(SlowClickRenameEnabled)).Read();
             RdpReconnectionCount = new WinRegistryEntry<int>(hive, subKey, nameof(RdpReconnectionCount)).Read();
             ConRDPOverallConnectionTimeout = new WinRegistryEntry<int>(hive, subKey, nameof(ConRDPOverallConnectionTimeout)).Read();
+            MaxConnectionsToOpenBulk = new WinRegistryEntry<int>(hive, subKey, nameof(MaxConnectionsToOpenBulk)).Read();
             AutoSaveEveryMinutes = new WinRegistryEntry<int>(hive, subKey, nameof(AutoSaveEveryMinutes)).Read();
 
             SetupValidation();
@@ -102,6 +108,10 @@ namespace mRemoteNG.Config.Settings.Registry
             int RdpReconnectionCountMin = (int)connectionsPage.numRdpReconnectionCount.Minimum;
             int RdpReconnectionCountMax = (int)connectionsPage.numRdpReconnectionCount.Maximum;
             RdpReconnectionCount.SetValidation(RdpReconnectionCountMin, RdpReconnectionCountMax);
+
+            int MaxConnectionsToOpenBulkMin = (int)connectionsPage.numMaxConnectionsToOpenBulk.Minimum;
+            int MaxConnectionsToOpenBulkMax = (int)connectionsPage.numMaxConnectionsToOpenBulk.Maximum;
+            MaxConnectionsToOpenBulk.SetValidation(MaxConnectionsToOpenBulkMin, MaxConnectionsToOpenBulkMax);
         }
 
         /// <summary>
@@ -119,6 +129,7 @@ namespace mRemoteNG.Config.Settings.Registry
             ApplySlowClickRenameEnabled();
             ApplyRdpReconnectionCount();
             ApplyConRDPOverallConnectionTimeout();
+            ApplyMaxConnectionsToOpenBulk();
             ApplyAutoSaveEveryMinutes();
         }
 
@@ -180,6 +191,12 @@ namespace mRemoteNG.Config.Settings.Registry
         {
             if (ConRDPOverallConnectionTimeout.IsValid)
                 Properties.Settings.Default.ConRDPOverallConnectionTimeout = ConRDPOverallConnectionTimeout.Value;
+        }
+
+        private void ApplyMaxConnectionsToOpenBulk()
+        {
+            if (MaxConnectionsToOpenBulk.IsValid)
+                Properties.Settings.Default.MaxConnectionsToOpenBulk = MaxConnectionsToOpenBulk.Value;
         }
 
         private void ApplyAutoSaveEveryMinutes()

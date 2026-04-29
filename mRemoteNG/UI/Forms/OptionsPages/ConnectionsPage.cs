@@ -65,6 +65,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRdpReconnectionCount.Text = Language.RdpReconnectCount;
             lblRDPConTimeout.Text = Language.RdpOverallConnectionTimeout;
             lblAutoSave1.Text = Language.AutoSaveEvery;
+            lblMaxConnectionsToOpenBulk.Text = Language.MaxConnectionsToOpenBulk;
 
             lblClosingConnections.Text = Language.ClosingConnections;
             radCloseWarnAll.Text = Language._CloseWarnAll;
@@ -90,6 +91,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numRdpReconnectionCount.Value = Convert.ToDecimal(Settings.Default.RdpReconnectionCount);
             numRDPConTimeout.Value = Convert.ToDecimal(Settings.Default.ConRDPOverallConnectionTimeout);
             numAutoSave.Value = Convert.ToDecimal(Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes);
+            numMaxConnectionsToOpenBulk.Value = Convert.ToDecimal(Settings.Default.MaxConnectionsToOpenBulk);
 
             // Load ConfirmCloseConnection setting
             switch (Settings.Default.ConfirmCloseConnection)
@@ -142,6 +144,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
 
             Properties.Settings.Default.RdpReconnectionCount = (int)numRdpReconnectionCount.Value;
             Properties.Settings.Default.ConRDPOverallConnectionTimeout = (int)numRDPConTimeout.Value;
+            Properties.Settings.Default.MaxConnectionsToOpenBulk = (int)numMaxConnectionsToOpenBulk.Value;
             Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = (int)numAutoSave.Value;
             if (Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes > 0)
             {
@@ -220,6 +223,9 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             if (pageRegSettingsInstance.ConRDPOverallConnectionTimeout.IsSet)
                 DisableControl(numRDPConTimeout);
 
+            if (pageRegSettingsInstance.MaxConnectionsToOpenBulk.IsSet)
+                DisableControl(numMaxConnectionsToOpenBulk);
+
             if (pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet)
                 DisableControl(numAutoSave);
 
@@ -241,6 +247,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
                 || pageRegSettingsInstance.DoNotTrimUsername.IsSet
                 || pageRegSettingsInstance.RdpReconnectionCount.IsSet
                 || pageRegSettingsInstance.ConRDPOverallConnectionTimeout.IsSet
+                || pageRegSettingsInstance.MaxConnectionsToOpenBulk.IsSet
                 || pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet;
         }
     }

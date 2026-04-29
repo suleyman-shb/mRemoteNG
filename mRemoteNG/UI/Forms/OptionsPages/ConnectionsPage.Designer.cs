@@ -42,6 +42,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkSingleClickOnOpenedConnectionSwitchesToIt = new MrngCheckBox();
             lblAutoSave1 = new MrngLabel();
             numAutoSave = new MrngNumericUpDown();
+            lblMaxConnectionsToOpenBulk = new MrngLabel();
+            numMaxConnectionsToOpenBulk = new MrngNumericUpDown();
             pnlConfirmCloseConnection = new System.Windows.Forms.Panel();
             lblClosingConnections = new MrngLabel();
             radCloseWarnAll = new MrngRadioButton();
@@ -60,6 +62,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numMaxConnectionsToOpenBulk).BeginInit();
             pnlConfirmCloseConnection.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             pnlOptions.SuspendLayout();
@@ -161,6 +164,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numAutoSave.Size = new System.Drawing.Size(53, 22);
             numAutoSave.TabIndex = 1;
             // 
+            // lblMaxConnectionsToOpenBulk
+            //
+            lblMaxConnectionsToOpenBulk.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxConnectionsToOpenBulk.Location = new System.Drawing.Point(3, 78);
+            lblMaxConnectionsToOpenBulk.Name = "lblMaxConnectionsToOpenBulk";
+            lblMaxConnectionsToOpenBulk.Size = new System.Drawing.Size(268, 26);
+            lblMaxConnectionsToOpenBulk.TabIndex = 2;
+            lblMaxConnectionsToOpenBulk.Text = "Max connections to open in bulk";
+            lblMaxConnectionsToOpenBulk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxConnectionsToOpenBulk
+            //
+            numMaxConnectionsToOpenBulk.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxConnectionsToOpenBulk.Location = new System.Drawing.Point(277, 81);
+            numMaxConnectionsToOpenBulk.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxConnectionsToOpenBulk.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxConnectionsToOpenBulk.Name = "numMaxConnectionsToOpenBulk";
+            numMaxConnectionsToOpenBulk.Size = new System.Drawing.Size(53, 22);
+            numMaxConnectionsToOpenBulk.TabIndex = 3;
+            numMaxConnectionsToOpenBulk.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // pnlConfirmCloseConnection
             // 
             pnlConfirmCloseConnection.Controls.Add(lblClosingConnections);
@@ -266,14 +290,17 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             tableLayoutPanel2.Controls.Add(lblAutoSave1, 0, 2);
             tableLayoutPanel2.Controls.Add(lblRDPConTimeout, 0, 1);
             tableLayoutPanel2.Controls.Add(numRDPConTimeout, 1, 1);
+            tableLayoutPanel2.Controls.Add(lblMaxConnectionsToOpenBulk, 0, 3);
+            tableLayoutPanel2.Controls.Add(numMaxConnectionsToOpenBulk, 1, 3);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             tableLayoutPanel2.Location = new System.Drawing.Point(0, 236);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            tableLayoutPanel2.Size = new System.Drawing.Size(610, 79);
+            tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            tableLayoutPanel2.Size = new System.Drawing.Size(610, 105);
             tableLayoutPanel2.TabIndex = 9;
             // 
             // chkPlaceSearchBarAboveConnectionTree
@@ -367,6 +394,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).EndInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMaxConnectionsToOpenBulk).EndInit();
             pnlConfirmCloseConnection.ResumeLayout(false);
             pnlConfirmCloseConnection.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
@@ -390,6 +418,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
         internal Controls.MrngNumericUpDown numRDPConTimeout;
         internal Controls.MrngLabel lblRDPConTimeout;
         internal Controls.MrngNumericUpDown numRdpReconnectionCount;
+        internal Controls.MrngLabel lblMaxConnectionsToOpenBulk;
+        internal Controls.MrngNumericUpDown numMaxConnectionsToOpenBulk;
         internal MrngCheckBox chkSaveConnectionsAfterEveryEdit;
         private MrngCheckBox chkUseFilterSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
