@@ -23,7 +23,8 @@ namespace mRemoteNG.Connection.Protocol.RDP
                 {"5", nameof(Language.RdpErrorCode3)},
                 {"6", nameof(Language.RdpErrorCode4)},
                 {"7", nameof(Language.RdpErrorConnection)},
-                {"100", nameof(Language.RdpErrorWinsock)}
+                {"100", nameof(Language.RdpErrorWinsock)},
+                {"2825", nameof(Language.RdpError2825)}
             };
         }
 
@@ -34,7 +35,7 @@ namespace mRemoteNG.Connection.Protocol.RDP
                 if (_description == null)
                     InitDescription();
 
-                return (string)_description?[id];
+                return (string)_description?[id.ToString()];
             }
             catch (Exception ex)
             {

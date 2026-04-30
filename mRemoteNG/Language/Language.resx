@@ -1447,6 +1447,9 @@ If you run into such an error, please create a new connection file!</value>
   <data name="RdpErrorWindowCreation" xml:space="preserve">
     <value>A window-creation error has occurred.</value>
   </data>
+  <data name="RdpError2825" xml:space="preserve">
+    <value>The remote computer requires Network Level Authentication (NLA), which your computer does not support or is not configured for. Try changing the 'Authentication Level' in the connection settings.</value>
+  </data>
   <data name="RdpErrorWinsock" xml:space="preserve">
     <value>Winsock initialization error.</value>
   </data>
