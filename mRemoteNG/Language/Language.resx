@@ -2586,4 +2586,7 @@ Nightly Channel includes Alphas, Betas &amp; Release Candidates.</value>
   <data name="SlowClickRenameEnabled" xml:space="preserve">
     <value>Rename items using slow double-click (Explorer style)</value>
   </data>
+  <data name="MaxBulkConnections" xml:space="preserve">
+    <value>Maximum simultaneous connections</value>
+  </data>
 </root>

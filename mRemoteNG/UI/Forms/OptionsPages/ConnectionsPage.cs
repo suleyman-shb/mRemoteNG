@@ -65,6 +65,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRdpReconnectionCount.Text = Language.RdpReconnectCount;
             lblRDPConTimeout.Text = Language.RdpOverallConnectionTimeout;
             lblAutoSave1.Text = Language.AutoSaveEvery;
+            lblMaxBulkConnections.Text = Language.MaxBulkConnections;
 
             lblClosingConnections.Text = Language.ClosingConnections;
             radCloseWarnAll.Text = Language._CloseWarnAll;
@@ -90,6 +91,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numRdpReconnectionCount.Value = Convert.ToDecimal(Settings.Default.RdpReconnectionCount);
             numRDPConTimeout.Value = Convert.ToDecimal(Settings.Default.ConRDPOverallConnectionTimeout);
             numAutoSave.Value = Convert.ToDecimal(Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes);
+            numMaxBulkConnections.Value = Convert.ToDecimal(Settings.Default.MaxBulkConnections);
 
             // Load ConfirmCloseConnection setting
             switch (Settings.Default.ConfirmCloseConnection)
@@ -142,6 +144,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
 
             Properties.Settings.Default.RdpReconnectionCount = (int)numRdpReconnectionCount.Value;
             Properties.Settings.Default.ConRDPOverallConnectionTimeout = (int)numRDPConTimeout.Value;
+            Properties.Settings.Default.MaxBulkConnections = (int)numMaxBulkConnections.Value;
             Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = (int)numAutoSave.Value;
             if (Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes > 0)
             {
@@ -223,6 +226,9 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             if (pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet)
                 DisableControl(numAutoSave);
 
+            if (pageRegSettingsInstance.MaxBulkConnections.IsSet)
+                DisableControl(numMaxBulkConnections);
+
             // Updates the visibility of the information label indicating whether registry settings are used.
             lblRegistrySettingsUsedInfo.Visible = ShowRegistrySettingsUsedInfo();
         }
@@ -241,7 +247,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
                 || pageRegSettingsInstance.DoNotTrimUsername.IsSet
                 || pageRegSettingsInstance.RdpReconnectionCount.IsSet
                 || pageRegSettingsInstance.ConRDPOverallConnectionTimeout.IsSet
-                || pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet;
+                || pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet
+                || pageRegSettingsInstance.MaxBulkConnections.IsSet;
         }
     }
 }
