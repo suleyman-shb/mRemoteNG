@@ -2586,4 +2586,7 @@ Nightly Channel includes Alphas, Betas &amp; Release Candidates.</value>
   <data name="SlowClickRenameEnabled" xml:space="preserve">
     <value>Rename items using slow double-click (Explorer style)</value>
   </data>
+  <data name="RdpError2825" xml:space="preserve">
+    <value>The remote computer requires Network Level Authentication (NLA), which your computer does not support or which is not enabled in the connection settings. Try changing the "Authentication Level" to "Negotiate" or "Require NLA" in the connection properties, and ensure "Use CredSSP" is set to "Yes".</value>
+  </data>
 </root>

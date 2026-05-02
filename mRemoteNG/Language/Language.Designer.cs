@@ -5306,6 +5306,15 @@ namespace mRemoteNG.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The remote computer requires Network Level Authentication (NLA), which your computer does not support or which is not enabled in the connection settings. Try changing the "Authentication Level" to "Negotiate" or "Require NLA" in the connection properties, and ensure "Use CredSSP" is set to "Yes"..
+        /// </summary>
+        internal static string RdpError2825 {
+            get {
+                return ResourceManager.GetString("RdpError2825", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to An unrecoverable error has occurred during client connection..
         /// </summary>
         internal static string RdpErrorConnection {
