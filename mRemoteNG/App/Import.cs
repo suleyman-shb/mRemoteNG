@@ -97,7 +97,7 @@ namespace mRemoteNG.App
 		        {
 			        try
 			        {
-                        IConnectionImporter<string> importer = BuildConnectionImporterFromFileExtension(fileName);
+                        IConnectionImporter<string> importer = BuildConnectionImporter(fileName);
 				        importer.Import(fileName, importDestinationContainer);
 			        }
 			        catch (Exception ex)
@@ -159,9 +159,11 @@ namespace mRemoteNG.App
             }
         }
 
-        private static IConnectionImporter<string> BuildConnectionImporterFromFileExtension(string fileName)
+        private static IConnectionImporter<string> BuildConnectionImporter(string fileName)
         {
-            // TODO: Use the file contents to determine the file type instead of trusting the extension
+            IConnectionImporter<string> importer = DetectImporterFromContent(fileName);
+            if (importer != null) return importer;
+
             string extension = Path.GetExtension(fileName) ?? "";
             switch (extension.ToLowerInvariant())
             {
@@ -180,6 +182,38 @@ namespace mRemoteNG.App
                 default:
                     throw new FileFormatException("Unrecognized file format.");
             }
+        }
+
+        private static IConnectionImporter<string> DetectImporterFromContent(string fileName)
+        {
+            try
+            {
+                using (var reader = new StreamReader(fileName, true))
+                {
+                    char[] buffer = new char[4096];
+                    int read = reader.ReadBlock(buffer, 0, buffer.Length);
+                    string content = new string(buffer, 0, read);
+
+                    if (content.Contains("<Connections") && content.Contains("ConfVersion"))
+                        return new MRemoteNGXmlImporter();
+                    if (content.Contains("<RDCMan"))
+                        return new RemoteDesktopConnectionManagerImporter();
+                    if (content.Contains("screen mode id:i:") || content.Contains("full address:s:"))
+                        return new RemoteDesktopConnectionImporter();
+                    if (content.Contains("Name;Id;Parent;NodeType;"))
+                        return new MRemoteNGCsvImporter();
+                    if (content.Contains("PuTTY Configuration Manager"))
+                        return new PuttyConnectionManagerImporter();
+                    if (content.Contains("<VanDyke"))
+                        return new SecureCRTImporter();
+                }
+            }
+            catch (Exception ex)
+            {
+                Runtime.MessageCollector.AddExceptionMessage($"Failed to detect file type from content for {fileName}. Falling back to extension.", ex);
+            }
+
+            return null;
         }
     }
 }
