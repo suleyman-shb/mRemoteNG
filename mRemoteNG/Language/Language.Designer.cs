@@ -3178,6 +3178,15 @@ namespace mRemoteNG.Resources.Language {
                 return ResourceManager.GetString("MacAddress", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum simultaneous connections to open (bulk open).
+        /// </summary>
+        internal static string MaxSimultaneousConnectionsBulkOpen {
+            get {
+                return ResourceManager.GetString("MaxSimultaneousConnectionsBulkOpen", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Windows User Account (DPAPI).

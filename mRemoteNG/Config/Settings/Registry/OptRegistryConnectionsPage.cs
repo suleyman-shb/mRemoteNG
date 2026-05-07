@@ -63,6 +63,11 @@ namespace mRemoteNG.Config.Settings.Registry
         /// </summary>
         public WinRegistryEntry<int> AutoSaveEveryMinutes { get; private set; }
 
+        /// <summary>
+        /// Specifies the maximum number of simultaneous connections to open during a bulk open operation.
+        /// </summary>
+        public WinRegistryEntry<int> MaxSimultaneousConnections { get; private set; }
+
         public OptRegistryConnectionsPage()
         {
             RegistryHive hive = WindowsRegistryInfo.Hive;
@@ -79,6 +84,7 @@ namespace mRemoteNG.Config.Settings.Registry
             RdpReconnectionCount = new WinRegistryEntry<int>(hive, subKey, nameof(RdpReconnectionCount)).Read();
             ConRDPOverallConnectionTimeout = new WinRegistryEntry<int>(hive, subKey, nameof(ConRDPOverallConnectionTimeout)).Read();
             AutoSaveEveryMinutes = new WinRegistryEntry<int>(hive, subKey, nameof(AutoSaveEveryMinutes)).Read();
+            MaxSimultaneousConnections = new WinRegistryEntry<int>(hive, subKey, nameof(MaxSimultaneousConnections)).Read();
 
             SetupValidation();
             Apply();
@@ -102,6 +108,10 @@ namespace mRemoteNG.Config.Settings.Registry
             int RdpReconnectionCountMin = (int)connectionsPage.numRdpReconnectionCount.Minimum;
             int RdpReconnectionCountMax = (int)connectionsPage.numRdpReconnectionCount.Maximum;
             RdpReconnectionCount.SetValidation(RdpReconnectionCountMin, RdpReconnectionCountMax);
+
+            int MaxSimultaneousConnectionsMin = (int)connectionsPage.numMaxSimultaneousConnections.Minimum;
+            int MaxSimultaneousConnectionsMax = (int)connectionsPage.numMaxSimultaneousConnections.Maximum;
+            MaxSimultaneousConnections.SetValidation(MaxSimultaneousConnectionsMin, MaxSimultaneousConnectionsMax);
         }
 
         /// <summary>
@@ -120,6 +130,7 @@ namespace mRemoteNG.Config.Settings.Registry
             ApplyRdpReconnectionCount();
             ApplyConRDPOverallConnectionTimeout();
             ApplyAutoSaveEveryMinutes();
+            ApplyMaxSimultaneousConnections();
         }
 
         private void ApplySingleClickOnConnectionOpensIt()
@@ -186,6 +197,12 @@ namespace mRemoteNG.Config.Settings.Registry
         {
             if (AutoSaveEveryMinutes.IsValid)
                 Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = AutoSaveEveryMinutes.Value;
+        }
+
+        private void ApplyMaxSimultaneousConnections()
+        {
+            if (MaxSimultaneousConnections.IsValid)
+                Properties.Settings.Default.MaxSimultaneousConnections = MaxSimultaneousConnections.Value;
         }
     }
 }

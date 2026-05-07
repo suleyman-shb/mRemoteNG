@@ -2401,5 +2401,17 @@ namespace mRemoteNG.Properties {
                 this["ConDefaultRedirectDiskDrivesCustom"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int MaxSimultaneousConnections {
+            get {
+                return ((int)(this["MaxSimultaneousConnections"]));
+            }
+            set {
+                this["MaxSimultaneousConnections"] = value;
+            }
+        }
     }
 }

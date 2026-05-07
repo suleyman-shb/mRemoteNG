@@ -1206,6 +1206,9 @@ If you run into such an error, please create a new connection file!</value>
   <data name="MacAddress" xml:space="preserve">
     <value>MAC Address</value>
   </data>
+  <data name="MaxSimultaneousConnectionsBulkOpen" xml:space="preserve">
+    <value>Maximum simultaneous connections to open (bulk open)</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
