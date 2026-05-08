@@ -1465,6 +1465,9 @@ If you run into such an error, please create a new connection file!</value>
   <data name="RdpGatewayNotSupported" xml:space="preserve">
     <value>RDP Gateway is not supported!</value>
   </data>
+  <data name="MaxSimultaneousConnections" xml:space="preserve">
+    <value>Maximum simultaneous connections:</value>
+  </data>
   <data name="RdpReconnectCount" xml:space="preserve">
     <value>RDP reconnect count:</value>
   </data>
@@ -2589,7 +2592,7 @@ Nightly Channel includes Alphas, Betas &amp; Release Candidates.</value>
   <data name="SlowClickRenameEnabled" xml:space="preserve">
     <value>Rename items using slow double-click (Explorer style)</value>
   </data>
-  <data name="MaxSimultaneousBulkConnections" xml:space="preserve">
-    <value>Maximum simultaneous connections when bulk opening:</value>
+  <data name="MaxSimultaneousConnections" xml:space="preserve">
+    <value>Maximum simultaneous connections</value>
   </data>
 </root>
