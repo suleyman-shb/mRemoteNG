@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using mRemoteNG.Connection;
 using mRemoteNG.Tree;
 using mRemoteNG.Tree.Root;
@@ -10,6 +11,8 @@ namespace mRemoteNG.UI.Controls.ConnectionTree
         ConnectionTreeModel ConnectionTreeModel { get; set; }
 
         ConnectionInfo SelectedNode { get; }
+
+        IEnumerable<ConnectionInfo> SelectedNodes { get; }
 
         IEnumerable ExpandedObjects { get; set; }
 
