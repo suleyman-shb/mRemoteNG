@@ -35,7 +35,10 @@ namespace mRemoteNG.Connection.Protocol.RDP
                 if (_description == null)
                     InitDescription();
 
-                return (string)_description?[id.ToString()];
+                var resourceKey = (string)_description?[id.ToString()];
+                return resourceKey != null
+                    ? Language.ResourceManager.GetString(resourceKey)
+                    : string.Format(Language.RdpErrorUnknown, id);
             }
             catch (Exception ex)
             {
