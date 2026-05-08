@@ -42,6 +42,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkSingleClickOnOpenedConnectionSwitchesToIt = new MrngCheckBox();
             lblAutoSave1 = new MrngLabel();
             numAutoSave = new MrngNumericUpDown();
+            lblMaxSimultaneousConnections = new MrngLabel();
+            numMaxSimultaneousConnections = new MrngNumericUpDown();
             pnlConfirmCloseConnection = new System.Windows.Forms.Panel();
             lblClosingConnections = new MrngLabel();
             radCloseWarnAll = new MrngRadioButton();
@@ -55,8 +57,6 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkConnectionTreeTrackActiveConnection = new MrngCheckBox();
             chkDoNotTrimUsername = new MrngCheckBox();
             chkSlowClickRename = new MrngCheckBox();
-            lblMaxBulkOpenCount = new MrngLabel();
-            numMaxBulkOpenCount = new MrngNumericUpDown();
             pnlOptions = new System.Windows.Forms.Panel();
             lblRegistrySettingsUsedInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).BeginInit();
@@ -268,8 +268,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             tableLayoutPanel2.Controls.Add(lblAutoSave1, 0, 2);
             tableLayoutPanel2.Controls.Add(lblRDPConTimeout, 0, 1);
             tableLayoutPanel2.Controls.Add(numRDPConTimeout, 1, 1);
-            tableLayoutPanel2.Controls.Add(lblMaxBulkOpenCount, 0, 3);
-            tableLayoutPanel2.Controls.Add(numMaxBulkOpenCount, 1, 3);
+            tableLayoutPanel2.Controls.Add(lblMaxSimultaneousConnections, 0, 3);
+            tableLayoutPanel2.Controls.Add(numMaxSimultaneousConnections, 1, 3);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             tableLayoutPanel2.Location = new System.Drawing.Point(0, 236);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -281,27 +281,6 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             tableLayoutPanel2.Size = new System.Drawing.Size(610, 105);
             tableLayoutPanel2.TabIndex = 9;
             // 
-            // lblMaxBulkOpenCount
-            //
-            lblMaxBulkOpenCount.Dock = System.Windows.Forms.DockStyle.Top;
-            lblMaxBulkOpenCount.Location = new System.Drawing.Point(3, 78);
-            lblMaxBulkOpenCount.Name = "lblMaxBulkOpenCount";
-            lblMaxBulkOpenCount.Size = new System.Drawing.Size(268, 26);
-            lblMaxBulkOpenCount.TabIndex = 2;
-            lblMaxBulkOpenCount.Text = "Maximum number of connections to open at once";
-            lblMaxBulkOpenCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
-            // numMaxBulkOpenCount
-            //
-            numMaxBulkOpenCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            numMaxBulkOpenCount.Location = new System.Drawing.Point(277, 81);
-            numMaxBulkOpenCount.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
-            numMaxBulkOpenCount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numMaxBulkOpenCount.Name = "numMaxBulkOpenCount";
-            numMaxBulkOpenCount.Size = new System.Drawing.Size(53, 22);
-            numMaxBulkOpenCount.TabIndex = 3;
-            numMaxBulkOpenCount.Value = new decimal(new int[] { 10, 0, 0, 0 });
-            //
             // chkPlaceSearchBarAboveConnectionTree
             // 
             chkPlaceSearchBarAboveConnectionTree._mice = MrngCheckBox.MouseState.OUT;
@@ -380,6 +359,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRegistrySettingsUsedInfo.Text = "Some settings are configured by your Administrator. Please contact your administrator for more information.";
             lblRegistrySettingsUsedInfo.Visible = false;
             // 
+            // lblMaxSimultaneousConnections
+            //
+            lblMaxSimultaneousConnections.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxSimultaneousConnections.Location = new System.Drawing.Point(3, 78);
+            lblMaxSimultaneousConnections.Name = "lblMaxSimultaneousConnections";
+            lblMaxSimultaneousConnections.Size = new System.Drawing.Size(268, 26);
+            lblMaxSimultaneousConnections.TabIndex = 2;
+            lblMaxSimultaneousConnections.Text = "Maximum simultaneous connections";
+            lblMaxSimultaneousConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxSimultaneousConnections
+            //
+            numMaxSimultaneousConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxSimultaneousConnections.Location = new System.Drawing.Point(277, 81);
+            numMaxSimultaneousConnections.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxSimultaneousConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxSimultaneousConnections.Name = "numMaxSimultaneousConnections";
+            numMaxSimultaneousConnections.Size = new System.Drawing.Size(53, 22);
+            numMaxSimultaneousConnections.TabIndex = 3;
+            numMaxSimultaneousConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // ConnectionsPage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -416,6 +416,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
         internal Controls.MrngNumericUpDown numRDPConTimeout;
         internal Controls.MrngLabel lblRDPConTimeout;
         internal Controls.MrngNumericUpDown numRdpReconnectionCount;
+        internal Controls.MrngLabel lblMaxSimultaneousConnections;
+        internal Controls.MrngNumericUpDown numMaxSimultaneousConnections;
         internal MrngCheckBox chkSaveConnectionsAfterEveryEdit;
         private MrngCheckBox chkUseFilterSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -423,8 +425,6 @@ namespace mRemoteNG.UI.Forms.OptionsPages
         private MrngCheckBox chkConnectionTreeTrackActiveConnection;
         private MrngCheckBox chkDoNotTrimUsername;
         private MrngCheckBox chkSlowClickRename;
-        internal Controls.MrngLabel lblMaxBulkOpenCount;
-        internal Controls.MrngNumericUpDown numMaxBulkOpenCount;
         internal System.Windows.Forms.Panel pnlOptions;
         internal System.Windows.Forms.Label lblRegistrySettingsUsedInfo;
     }
