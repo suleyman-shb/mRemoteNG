@@ -43,4 +43,44 @@ public class ImportTests
             Assert.That(container.Children, Has.One.Items);
         }
     }
+
+    [Test]
+    public void ImportFromFileWithMissingExtensionButValidContent()
+    {
+        using (FileTestHelpers.DisposableTempFile(out var file, ""))
+        {
+            File.AppendAllText(file, Resources.test_remotedesktopconnection_rdp);
+            var conService = new ConnectionsService(PuttySessionsManager.Instance);
+            var container = new ContainerInfo();
+            var exceptionOccurred = false;
+
+            Import.HeadlessFileImport(new[] { file }, container, conService, s => exceptionOccurred = true);
+
+            Assert.That(!exceptionOccurred, "Import should not fail for file with missing extension but valid RDP content.");
+            Assert.That(container.Children, Has.One.Items);
+            var imported = container.Children[0] as ContainerInfo;
+            Assert.That(imported, Is.Not.Null);
+            Assert.That(imported.Children, Has.One.Items);
+        }
+    }
+
+    [Test]
+    public void ImportFromFileWithIncorrectExtensionButValidContent()
+    {
+        using (FileTestHelpers.DisposableTempFile(out var file, ".txt"))
+        {
+            File.AppendAllText(file, Resources.confCons_v2_6);
+            var conService = new ConnectionsService(PuttySessionsManager.Instance);
+            var container = new ContainerInfo();
+            var exceptionOccurred = false;
+
+            Import.HeadlessFileImport(new[] { file }, container, conService, s => exceptionOccurred = true);
+
+            Assert.That(!exceptionOccurred, "Import should not fail for file with .txt extension but valid mRemoteNG XML content.");
+            Assert.That(container.Children, Has.One.Items);
+            var imported = container.Children[0] as ContainerInfo;
+            Assert.That(imported, Is.Not.Null);
+            Assert.That(imported.Children, Has.One.Items);
+        }
+    }
 }
