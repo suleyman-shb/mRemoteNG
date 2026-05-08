@@ -163,6 +163,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numAutoSave.Size = new System.Drawing.Size(53, 22);
             numAutoSave.TabIndex = 1;
             // 
+            // lblMaxSimultaneousConnections
+            //
+            lblMaxSimultaneousConnections.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxSimultaneousConnections.Location = new System.Drawing.Point(3, 78);
+            lblMaxSimultaneousConnections.Name = "lblMaxSimultaneousConnections";
+            lblMaxSimultaneousConnections.Size = new System.Drawing.Size(268, 26);
+            lblMaxSimultaneousConnections.TabIndex = 2;
+            lblMaxSimultaneousConnections.Text = "Maximum simultaneous connections:";
+            lblMaxSimultaneousConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxSimultaneousConnections
+            //
+            numMaxSimultaneousConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxSimultaneousConnections.Location = new System.Drawing.Point(277, 81);
+            numMaxSimultaneousConnections.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxSimultaneousConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxSimultaneousConnections.Name = "numMaxSimultaneousConnections";
+            numMaxSimultaneousConnections.Size = new System.Drawing.Size(53, 22);
+            numMaxSimultaneousConnections.TabIndex = 3;
+            numMaxSimultaneousConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // pnlConfirmCloseConnection
             // 
             pnlConfirmCloseConnection.Controls.Add(lblClosingConnections);
@@ -171,7 +192,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             pnlConfirmCloseConnection.Controls.Add(radCloseWarnExit);
             pnlConfirmCloseConnection.Controls.Add(radCloseWarnNever);
             pnlConfirmCloseConnection.Dock = System.Windows.Forms.DockStyle.Top;
-            pnlConfirmCloseConnection.Location = new System.Drawing.Point(0, 315);
+            pnlConfirmCloseConnection.Location = new System.Drawing.Point(0, 341);
             pnlConfirmCloseConnection.Name = "pnlConfirmCloseConnection";
             pnlConfirmCloseConnection.Size = new System.Drawing.Size(610, 133);
             pnlConfirmCloseConnection.TabIndex = 6;
@@ -393,6 +414,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).EndInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMaxSimultaneousConnections).EndInit();
             pnlConfirmCloseConnection.ResumeLayout(false);
             pnlConfirmCloseConnection.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);

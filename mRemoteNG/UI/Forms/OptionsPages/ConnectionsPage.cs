@@ -144,6 +144,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
 
             Properties.Settings.Default.RdpReconnectionCount = (int)numRdpReconnectionCount.Value;
             Properties.Settings.Default.ConRDPOverallConnectionTimeout = (int)numRDPConTimeout.Value;
+            Properties.Settings.Default.MaxSimultaneousConnections = (int)numMaxSimultaneousConnections.Value;
             Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = (int)numAutoSave.Value;
             Properties.Settings.Default.MaxSimultaneousConnections = (int)numMaxSimultaneousConnections.Value;
             if (Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes > 0)
