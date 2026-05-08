@@ -40,6 +40,8 @@ namespace mRemoteNG.UI.Controls.ConnectionTree
 
         public ConnectionInfo SelectedNode => (ConnectionInfo)SelectedObject;
 
+        public IEnumerable<ConnectionInfo> SelectedNodes => SelectedObjects.Cast<ConnectionInfo>();
+
         public NodeSearcher NodeSearcher { get; private set; }
 
         public IConfirm<ConnectionInfo> NodeDeletionConfirmer { get; set; } = new AlwaysConfirmYes();
