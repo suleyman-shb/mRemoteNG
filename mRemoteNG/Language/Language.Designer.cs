@@ -5305,7 +5305,6 @@ namespace mRemoteNG.Resources.Language {
             }
         }
         
-        /// <summary>
         ///   Looks up a localized string similar to An unrecoverable error has occurred during client connection..
         /// </summary>
         internal static string RdpErrorConnection {
@@ -6243,15 +6242,6 @@ namespace mRemoteNG.Resources.Language {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Maximum simultaneous connections.
-        /// </summary>
-        internal static string MaxBulkConnections {
-            get {
-                return ResourceManager.GetString("MaxBulkConnections", resourceCulture);
-            }
-        }
-
         /// <summary>
         ///   Looks up a localized string similar to SmartCard.
         /// </summary>

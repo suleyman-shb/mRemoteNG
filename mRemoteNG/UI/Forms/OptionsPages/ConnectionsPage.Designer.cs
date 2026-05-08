@@ -42,8 +42,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkSingleClickOnOpenedConnectionSwitchesToIt = new MrngCheckBox();
             lblAutoSave1 = new MrngLabel();
             numAutoSave = new MrngNumericUpDown();
-            numMaxBulkConnections = new MrngNumericUpDown();
-            lblMaxBulkConnections = new MrngLabel();
+            lblMaxSimultaneousConnections = new MrngLabel();
+            numMaxSimultaneousConnections = new MrngNumericUpDown();
             pnlConfirmCloseConnection = new System.Windows.Forms.Panel();
             lblClosingConnections = new MrngLabel();
             radCloseWarnAll = new MrngRadioButton();
@@ -62,7 +62,6 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numMaxBulkConnections).BeginInit();
             pnlConfirmCloseConnection.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             pnlOptions.SuspendLayout();
@@ -164,6 +163,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numAutoSave.Size = new System.Drawing.Size(53, 22);
             numAutoSave.TabIndex = 1;
             // 
+            // lblMaxSimultaneousConnections
+            //
+            lblMaxSimultaneousConnections.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxSimultaneousConnections.Location = new System.Drawing.Point(3, 78);
+            lblMaxSimultaneousConnections.Name = "lblMaxSimultaneousConnections";
+            lblMaxSimultaneousConnections.Size = new System.Drawing.Size(268, 26);
+            lblMaxSimultaneousConnections.TabIndex = 2;
+            lblMaxSimultaneousConnections.Text = "Maximum simultaneous connections:";
+            lblMaxSimultaneousConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxSimultaneousConnections
+            //
+            numMaxSimultaneousConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxSimultaneousConnections.Location = new System.Drawing.Point(277, 81);
+            numMaxSimultaneousConnections.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxSimultaneousConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxSimultaneousConnections.Name = "numMaxSimultaneousConnections";
+            numMaxSimultaneousConnections.Size = new System.Drawing.Size(53, 22);
+            numMaxSimultaneousConnections.TabIndex = 3;
+            numMaxSimultaneousConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // pnlConfirmCloseConnection
             // 
             pnlConfirmCloseConnection.Controls.Add(lblClosingConnections);
@@ -258,27 +278,6 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             chkUseFilterSearch.Text = "Filter search matches in connection tree";
             chkUseFilterSearch.UseVisualStyleBackColor = true;
             // 
-            // lblMaxBulkConnections
-            //
-            lblMaxBulkConnections.Dock = System.Windows.Forms.DockStyle.Top;
-            lblMaxBulkConnections.Location = new System.Drawing.Point(3, 78);
-            lblMaxBulkConnections.Name = "lblMaxBulkConnections";
-            lblMaxBulkConnections.Size = new System.Drawing.Size(268, 26);
-            lblMaxBulkConnections.TabIndex = 2;
-            lblMaxBulkConnections.Text = "Maximum simultaneous connections";
-            lblMaxBulkConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            //
-            // numMaxBulkConnections
-            //
-            numMaxBulkConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            numMaxBulkConnections.Location = new System.Drawing.Point(277, 81);
-            numMaxBulkConnections.Maximum = new decimal(new int[] { 99, 0, 0, 0 });
-            numMaxBulkConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            numMaxBulkConnections.Name = "numMaxBulkConnections";
-            numMaxBulkConnections.Size = new System.Drawing.Size(53, 22);
-            numMaxBulkConnections.TabIndex = 3;
-            numMaxBulkConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
-            //
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
@@ -286,12 +285,12 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(numRdpReconnectionCount, 1, 0);
             tableLayoutPanel2.Controls.Add(numAutoSave, 1, 2);
-            tableLayoutPanel2.Controls.Add(numMaxBulkConnections, 1, 3);
             tableLayoutPanel2.Controls.Add(lblRdpReconnectionCount, 0, 0);
             tableLayoutPanel2.Controls.Add(lblAutoSave1, 0, 2);
-            tableLayoutPanel2.Controls.Add(lblMaxBulkConnections, 0, 3);
             tableLayoutPanel2.Controls.Add(lblRDPConTimeout, 0, 1);
             tableLayoutPanel2.Controls.Add(numRDPConTimeout, 1, 1);
+            tableLayoutPanel2.Controls.Add(lblMaxSimultaneousConnections, 0, 3);
+            tableLayoutPanel2.Controls.Add(numMaxSimultaneousConnections, 1, 3);
             tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             tableLayoutPanel2.Location = new System.Drawing.Point(0, 236);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -381,6 +380,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRegistrySettingsUsedInfo.Text = "Some settings are configured by your Administrator. Please contact your administrator for more information.";
             lblRegistrySettingsUsedInfo.Visible = false;
             // 
+            // lblMaxSimultaneousConnections
+            //
+            lblMaxSimultaneousConnections.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxSimultaneousConnections.Location = new System.Drawing.Point(3, 78);
+            lblMaxSimultaneousConnections.Name = "lblMaxSimultaneousConnections";
+            lblMaxSimultaneousConnections.Size = new System.Drawing.Size(268, 26);
+            lblMaxSimultaneousConnections.TabIndex = 2;
+            lblMaxSimultaneousConnections.Text = "Maximum simultaneous connections";
+            lblMaxSimultaneousConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxSimultaneousConnections
+            //
+            numMaxSimultaneousConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxSimultaneousConnections.Location = new System.Drawing.Point(277, 81);
+            numMaxSimultaneousConnections.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxSimultaneousConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxSimultaneousConnections.Name = "numMaxSimultaneousConnections";
+            numMaxSimultaneousConnections.Size = new System.Drawing.Size(53, 22);
+            numMaxSimultaneousConnections.TabIndex = 3;
+            numMaxSimultaneousConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // ConnectionsPage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -394,7 +414,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             ((System.ComponentModel.ISupportInitialize)numRDPConTimeout).EndInit();
             ((System.ComponentModel.ISupportInitialize)numRdpReconnectionCount).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAutoSave).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numMaxBulkConnections).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numMaxSimultaneousConnections).EndInit();
             pnlConfirmCloseConnection.ResumeLayout(false);
             pnlConfirmCloseConnection.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
@@ -418,8 +438,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
         internal Controls.MrngNumericUpDown numRDPConTimeout;
         internal Controls.MrngLabel lblRDPConTimeout;
         internal Controls.MrngNumericUpDown numRdpReconnectionCount;
-        internal Controls.MrngNumericUpDown numMaxBulkConnections;
-        internal Controls.MrngLabel lblMaxBulkConnections;
+        internal Controls.MrngLabel lblMaxSimultaneousConnections;
+        internal Controls.MrngNumericUpDown numMaxSimultaneousConnections;
         internal MrngCheckBox chkSaveConnectionsAfterEveryEdit;
         private MrngCheckBox chkUseFilterSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
