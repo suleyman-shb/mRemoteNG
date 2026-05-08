@@ -2405,12 +2405,12 @@ namespace mRemoteNG.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int MaxBulkConnectionsToOpen {
+        public int MaxSimultaneousConnections {
             get {
-                return ((int)(this["MaxBulkConnectionsToOpen"]));
+                return ((int)(this["MaxSimultaneousConnections"]));
             }
             set {
-                this["MaxBulkConnectionsToOpen"] = value;
+                this["MaxSimultaneousConnections"] = value;
             }
         }
     }

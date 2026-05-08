@@ -65,7 +65,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRdpReconnectionCount.Text = Language.RdpReconnectCount;
             lblRDPConTimeout.Text = Language.RdpOverallConnectionTimeout;
             lblAutoSave1.Text = Language.AutoSaveEvery;
-            lblMaxBulkConnectionsToOpen.Text = Language.MaxBulkConnectionsToOpen;
+            lblMaxSimultaneousConnections.Text = Language.MaxSimultaneousConnections;
 
             lblClosingConnections.Text = Language.ClosingConnections;
             radCloseWarnAll.Text = Language._CloseWarnAll;
@@ -91,7 +91,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             numRdpReconnectionCount.Value = Convert.ToDecimal(Settings.Default.RdpReconnectionCount);
             numRDPConTimeout.Value = Convert.ToDecimal(Settings.Default.ConRDPOverallConnectionTimeout);
             numAutoSave.Value = Convert.ToDecimal(Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes);
-            numMaxBulkConnectionsToOpen.Value = Convert.ToDecimal(Settings.Default.MaxBulkConnectionsToOpen);
+            numMaxSimultaneousConnections.Value = Convert.ToDecimal(Settings.Default.MaxSimultaneousConnections);
 
             // Load ConfirmCloseConnection setting
             switch (Settings.Default.ConfirmCloseConnection)
@@ -145,7 +145,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             Properties.Settings.Default.RdpReconnectionCount = (int)numRdpReconnectionCount.Value;
             Properties.Settings.Default.ConRDPOverallConnectionTimeout = (int)numRDPConTimeout.Value;
             Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes = (int)numAutoSave.Value;
-            Properties.Settings.Default.MaxBulkConnectionsToOpen = (int)numMaxBulkConnectionsToOpen.Value;
+            Properties.Settings.Default.MaxSimultaneousConnections = (int)numMaxSimultaneousConnections.Value;
             if (Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes > 0)
             {
                 _frmMain.tmrAutoSave.Interval = Properties.OptionsBackupPage.Default.AutoSaveEveryMinutes * 60000;
@@ -226,8 +226,8 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             if (pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet)
                 DisableControl(numAutoSave);
 
-            if (pageRegSettingsInstance.MaxBulkConnectionsToOpen.IsSet)
-                DisableControl(numMaxBulkConnectionsToOpen);
+            if (pageRegSettingsInstance.MaxSimultaneousConnections.IsSet)
+                DisableControl(numMaxSimultaneousConnections);
 
             // Updates the visibility of the information label indicating whether registry settings are used.
             lblRegistrySettingsUsedInfo.Visible = ShowRegistrySettingsUsedInfo();
@@ -248,7 +248,7 @@ namespace mRemoteNG.UI.Forms.OptionsPages
                 || pageRegSettingsInstance.RdpReconnectionCount.IsSet
                 || pageRegSettingsInstance.ConRDPOverallConnectionTimeout.IsSet
                 || pageRegSettingsInstance.AutoSaveEveryMinutes.IsSet
-                || pageRegSettingsInstance.MaxBulkConnectionsToOpen.IsSet;
+                || pageRegSettingsInstance.MaxSimultaneousConnections.IsSet;
         }
     }
 }

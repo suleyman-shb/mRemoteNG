@@ -7413,14 +7413,5 @@ namespace mRemoteNG.Resources.Language {
                 return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Maximum connections to open at once.
-        /// </summary>
-        internal static string MaxBulkConnectionsToOpen {
-            get {
-                return ResourceManager.GetString("MaxBulkConnectionsToOpen", resourceCulture);
-            }
-        }
     }
 }
