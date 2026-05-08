@@ -366,6 +366,10 @@ namespace mRemoteNG.UI.Window
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
+
+                    if (ConnectionTree.SelectedNodes == null)
+                        return;
+                  
                     var selectedObjects = ConnectionTree.SelectedObjects;
                     if (selectedObjects == null || selectedObjects.Count == 0)
                         return;
