@@ -132,6 +132,8 @@ namespace mRemoteNG.App
                             LoadConnections(true);
                             return;
                         default:
+                            Properties.OptionsDBsPage.Default.UseSQLServer = false;
+                            Properties.OptionsDBsPage.Default.Save();
                             Application.Exit();
                             return;
                     }
