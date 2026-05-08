@@ -5378,6 +5378,15 @@ namespace mRemoteNG.Resources.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The remote computer requires Network Level Authentication (NLA), which is not enabled for this connection or not supported by your computer. To resolve this, try enabling 'Use CredSSP' in the connection's RDP settings or verify the 'Authentication Level'. You may also need to adjust the remote computer's Remote Desktop settings to allow connections from computers running any version of Remote Desktop..
+        /// </summary>
+        internal static string RdpError2825 {
+            get {
+                return ResourceManager.GetString("RdpError2825", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to RDP Focus failed!.
         /// </summary>
         internal static string RdpFocusFailed {

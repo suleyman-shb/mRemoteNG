@@ -1456,6 +1456,9 @@ If you run into such an error, please create a new connection file!</value>
   <data name="RdpErrorWinsock" xml:space="preserve">
     <value>Winsock initialization error.</value>
   </data>
+  <data name="RdpError2825" xml:space="preserve">
+    <value>The remote computer requires Network Level Authentication (NLA), which is not enabled for this connection or not supported by your computer. To resolve this, try enabling 'Use CredSSP' in the connection's RDP settings or verify the 'Authentication Level'. You may also need to adjust the remote computer's Remote Desktop settings to allow connections from computers running any version of Remote Desktop.</value>
+  </data>
   <data name="FitToPanel" xml:space="preserve">
     <value>Fit To Panel</value>
   </data>
