@@ -367,7 +367,7 @@ namespace mRemoteNG.UI.Window
                 {
                     e.Handled = true;
 
-                    var selectedNodes = ConnectionTree.SelectedObjects.Cast<ConnectionInfo>().ToList();
+                    var selectedNodes = ConnectionTree.SelectedNodes.ToList();
                     if (!selectedNodes.Any())
                         return;
 
