@@ -367,18 +367,18 @@ namespace mRemoteNG.UI.Window
                 {
                     e.Handled = true;
 
-                    if (ConnectionTree.SelectedObjects == null)
+                    if (ConnectionTree.SelectedNodes == null)
                         return;
 
-                    foreach (var selectedObject in ConnectionTree.SelectedObjects)
+                    foreach (var node in ConnectionTree.SelectedNodes)
                     {
-                        if (selectedObject is ContainerInfo containerInfo)
+                        if (node is ContainerInfo containerInfo)
                         {
                             Runtime.ConnectionInitiator.OpenConnection(containerInfo);
                         }
-                        else if (selectedObject is ConnectionInfo connectionInfo)
+                        else
                         {
-                            Runtime.ConnectionInitiator.OpenConnection(connectionInfo);
+                            Runtime.ConnectionInitiator.OpenConnection(node);
                         }
                     }
                 }
