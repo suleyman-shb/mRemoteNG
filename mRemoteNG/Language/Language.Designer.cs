@@ -5305,7 +5305,6 @@ namespace mRemoteNG.Resources.Language {
             }
         }
         
-        /// <summary>
         ///   Looks up a localized string similar to An unrecoverable error has occurred during client connection..
         /// </summary>
         internal static string RdpErrorConnection {

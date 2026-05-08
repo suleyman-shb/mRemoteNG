@@ -105,6 +105,10 @@ namespace mRemoteNG.Config.Settings.Registry
             int numAutoSaveMax = (int)connectionsPage.numAutoSave.Maximum;
             AutoSaveEveryMinutes.SetValidation(numAutoSaveMin, numAutoSaveMax);
 
+            int MaxSimultaneousConnectionsMin = (int)connectionsPage.numMaxSimultaneousConnections.Minimum;
+            int MaxSimultaneousConnectionsMax = (int)connectionsPage.numMaxSimultaneousConnections.Maximum;
+            MaxSimultaneousConnections.SetValidation(MaxSimultaneousConnectionsMin, MaxSimultaneousConnectionsMax);
+
             int RdpReconnectionCountMin = (int)connectionsPage.numRdpReconnectionCount.Minimum;
             int RdpReconnectionCountMax = (int)connectionsPage.numRdpReconnectionCount.Maximum;
             RdpReconnectionCount.SetValidation(RdpReconnectionCountMin, RdpReconnectionCountMax);

@@ -380,6 +380,27 @@ namespace mRemoteNG.UI.Forms.OptionsPages
             lblRegistrySettingsUsedInfo.Text = "Some settings are configured by your Administrator. Please contact your administrator for more information.";
             lblRegistrySettingsUsedInfo.Visible = false;
             // 
+            // lblMaxSimultaneousConnections
+            //
+            lblMaxSimultaneousConnections.Dock = System.Windows.Forms.DockStyle.Top;
+            lblMaxSimultaneousConnections.Location = new System.Drawing.Point(3, 78);
+            lblMaxSimultaneousConnections.Name = "lblMaxSimultaneousConnections";
+            lblMaxSimultaneousConnections.Size = new System.Drawing.Size(268, 26);
+            lblMaxSimultaneousConnections.TabIndex = 2;
+            lblMaxSimultaneousConnections.Text = "Maximum simultaneous connections";
+            lblMaxSimultaneousConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
+            // numMaxSimultaneousConnections
+            //
+            numMaxSimultaneousConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            numMaxSimultaneousConnections.Location = new System.Drawing.Point(277, 81);
+            numMaxSimultaneousConnections.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            numMaxSimultaneousConnections.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numMaxSimultaneousConnections.Name = "numMaxSimultaneousConnections";
+            numMaxSimultaneousConnections.Size = new System.Drawing.Size(53, 22);
+            numMaxSimultaneousConnections.TabIndex = 3;
+            numMaxSimultaneousConnections.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            //
             // ConnectionsPage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);

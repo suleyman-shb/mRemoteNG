@@ -366,15 +366,16 @@ namespace mRemoteNG.UI.Window
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
+                  
+                    var selectedObjects = ConnectionTree.SelectedObjects;
+                    if (selectedObjects == null || selectedObjects.Count == 0)
+                        return;
 
-                    var selectedObjects = ConnectionTree.SelectedObjects.Cast<ConnectionInfo>().ToList();
-                    if (!selectedObjects.Any()) return;
-
-                    var connectionsToOpen = selectedObjects
-                                            .Where(node => node.GetTreeNodeType() == TreeNodeType.Connection ||
-                                                           node.GetTreeNodeType() == TreeNodeType.PuttySession)
-                                            .Take(Settings.Default.MaxSimultaneousConnections)
-                                            .ToList();
+                    var connectionsToOpen = selectedObjects.OfType<ConnectionInfo>()
+                                                           .Where(node => node.GetTreeNodeType() == TreeNodeType.Connection ||
+                                                                          node.GetTreeNodeType() == TreeNodeType.PuttySession)
+                                                           .Take(Settings.Default.MaxSimultaneousConnections)
+                                                           .ToList();
 
                     foreach (var connection in connectionsToOpen)
                     {
