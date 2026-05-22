@@ -816,7 +816,10 @@ namespace mRemoteNG.UI.Window
                     return;
                 }
 
-                Invoke(new Action(() => Prot_Event_Closed(interfaceControl.Protocol)));
+                if (!IsDisposed && !Disposing && IsHandleCreated)
+                {
+                    Invoke(new Action(() => Prot_Event_Closed(interfaceControl.Protocol)));
+                }
                 Runtime.ConnectionInitiator.OpenConnection(interfaceControl.Info, ConnectionInfo.Force.DoNotJump);
             }
             catch (Exception ex)
@@ -852,12 +855,19 @@ namespace mRemoteNG.UI.Window
 
         public void Prot_Event_Closed(object sender)
         {
-            ProtocolBase protocolBase = sender as ProtocolBase;
-            if (!(protocolBase?.InterfaceControl.Parent is ConnectionTab tabPage)) return;
-            if (tabPage.Disposing || tabPage.IsDisposed) return;
-            if (IsDisposed || Disposing) return;
-            tabPage.protocolClose = true;
-            Invoke(new Action(() => tabPage.Close()));
+            try
+            {
+                ProtocolBase protocolBase = sender as ProtocolBase;
+                if (!(protocolBase?.InterfaceControl.Parent is ConnectionTab tabPage)) return;
+                if (tabPage.Disposing || tabPage.IsDisposed) return;
+                if (IsDisposed || Disposing || !IsHandleCreated) return;
+                tabPage.protocolClose = true;
+                Invoke(new Action(() => tabPage.Close()));
+            }
+            catch (ObjectDisposedException)
+            {
+                // Form or tabPage is disposed, nothing to do.
+            }
         }
 
         #endregion
