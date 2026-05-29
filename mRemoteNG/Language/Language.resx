@@ -406,7 +406,7 @@
     <value>Connection failed!</value>
   </data>
   <data name="ConnectionEventErrorOccured" xml:space="preserve">
-    <value>A connection protocol error occurred. Host: "{1}"; Error code: "{2}"; Error Description: "{0}"</value>
+    <value>A connection error occurred while connecting to {1} (Code: {2}): {0}</value>
   </data>
   <data name="ConnectionOpenFailed" xml:space="preserve">
     <value>Opening connection failed!</value>
@@ -1309,7 +1309,7 @@ If you run into such an error, please create a new connection file!</value>
     <value>Proxy Username</value>
   </data>
   <data name="ProtocolEventDisconnected" xml:space="preserve">
-    <value>Protocol Event Disconnected. Host: "{1}"; Protocol: "{2}" Message: "{0}"</value>
+    <value>Disconnected from {1} ({2}): {0}</value>
   </data>
   <data name="ProtocolEventDisconnectFailed" xml:space="preserve">
     <value>Protocol Event Disconnected failed.
@@ -1451,7 +1451,7 @@ If you run into such an error, please create a new connection file!</value>
     <value>Winsock initialization error.</value>
   </data>
   <data name="RdpError2825" xml:space="preserve">
-    <value>The remote computer requires Network Level Authentication (NLA), which is not enabled for this connection or not supported by your computer. To resolve this, try enabling 'Use CredSSP' in the connection's RDP settings or verify the 'Authentication Level'. You may also need to adjust the remote computer's Remote Desktop settings to allow connections from computers running any version of Remote Desktop.</value>
+    <value>The remote computer requires Network Level Authentication (NLA), which is not enabled for this connection or not supported by your computer. To resolve this: 1) Enable 'Use CredSSP' in the connection's RDP settings. 2) Verify the 'Authentication Level'. 3) Ensure the remote computer allows connections from any version of Remote Desktop.</value>
   </data>
   <data name="FitToPanel" xml:space="preserve">
     <value>Fit To Panel</value>
