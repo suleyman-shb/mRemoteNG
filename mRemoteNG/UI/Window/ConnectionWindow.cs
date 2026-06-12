@@ -816,7 +816,17 @@ namespace mRemoteNG.UI.Window
                     return;
                 }
 
-                Invoke(new Action(() => Prot_Event_Closed(interfaceControl.Protocol)));
+                if (IsHandleCreated)
+                {
+                    try
+                    {
+                        Invoke(new Action(() => Prot_Event_Closed(interfaceControl.Protocol)));
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("Reconnect (UI.Window.ConnectionWindow) Invoke failed", ex);
+                    }
+                }
                 Runtime.ConnectionInitiator.OpenConnection(interfaceControl.Info, ConnectionInfo.Force.DoNotJump);
             }
             catch (Exception ex)
@@ -857,7 +867,18 @@ namespace mRemoteNG.UI.Window
             if (tabPage.Disposing || tabPage.IsDisposed) return;
             if (IsDisposed || Disposing) return;
             tabPage.protocolClose = true;
-            Invoke(new Action(() => tabPage.Close()));
+
+            if (IsHandleCreated)
+            {
+                try
+                {
+                    Invoke(new Action(() => tabPage.Close()));
+                }
+                catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                {
+                    Runtime.MessageCollector.AddExceptionMessage("Prot_Event_Closed (UI.Window.ConnectionWindow) Invoke failed", ex);
+                }
+            }
         }
 
         #endregion

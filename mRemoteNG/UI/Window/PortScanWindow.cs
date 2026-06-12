@@ -247,8 +247,19 @@ namespace mRemoteNG.UI.Window
         {
             if (InvokeRequired)
             {
-                Invoke(new PortScannerHostScannedDelegate(PortScanner_HostScanned),
-                       new object[] {host, scannedCount, totalCount});
+                if (IsHandleCreated)
+                {
+                    try
+                    {
+                        Invoke(new PortScannerHostScannedDelegate(PortScanner_HostScanned),
+                               new object[] {host, scannedCount, totalCount});
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("PortScanner_HostScanned (UI.Window.PortScanWindow) Invoke failed", ex);
+                    }
+                }
+
                 return;
             }
 
@@ -265,7 +276,18 @@ namespace mRemoteNG.UI.Window
         {
             if (InvokeRequired)
             {
-                Invoke(new PortScannerScanComplete(PortScanner_ScanComplete), new object[] {hosts});
+                if (IsHandleCreated)
+                {
+                    try
+                    {
+                        Invoke(new PortScannerScanComplete(PortScanner_ScanComplete), new object[] {hosts});
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("PortScanner_ScanComplete (UI.Window.PortScanWindow) Invoke failed", ex);
+                    }
+                }
+
                 return;
             }
 
