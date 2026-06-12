@@ -176,7 +176,18 @@ namespace mRemoteNG.UI.Window
         {
             if (ConnectionTree.InvokeRequired)
             {
-                ConnectionTree.Invoke(() => ConnectionsServiceOnConnectionsLoaded(o, connectionsLoadedEventArgs));
+                if (ConnectionTree.IsHandleCreated)
+                {
+                    try
+                    {
+                        ConnectionTree.Invoke(() => ConnectionsServiceOnConnectionsLoaded(o, connectionsLoadedEventArgs));
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("ConnectionsServiceOnConnectionsLoaded (UI.Window.ConnectionTreeWindow) Invoke failed", ex);
+                    }
+                }
+
                 return;
             }
 

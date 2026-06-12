@@ -520,8 +520,18 @@ namespace mRemoteNG.UI.Window
         {
             if (pbStatus.InvokeRequired)
             {
-                SetStatusCB d = SetStatus;
-                pbStatus.Invoke(d);
+                if (pbStatus.IsHandleCreated)
+                {
+                    try
+                    {
+                        SetStatusCB d = SetStatus;
+                        pbStatus.Invoke(d);
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("SetStatus (UI.Window.SSHTransferWindow) Invoke failed", ex);
+                    }
+                }
             }
             else
             {
@@ -536,8 +546,18 @@ namespace mRemoteNG.UI.Window
         {
             if (btnTransfer.InvokeRequired)
             {
-                EnableButtonsCB d = EnableButtons;
-                btnTransfer.Invoke(d);
+                if (btnTransfer.IsHandleCreated)
+                {
+                    try
+                    {
+                        EnableButtonsCB d = EnableButtons;
+                        btnTransfer.Invoke(d);
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("EnableButtons (UI.Window.SSHTransferWindow) Invoke failed", ex);
+                    }
+                }
             }
             else
             {
@@ -551,8 +571,18 @@ namespace mRemoteNG.UI.Window
         {
             if (btnTransfer.InvokeRequired)
             {
-                DisableButtonsCB d = DisableButtons;
-                btnTransfer.Invoke(d);
+                if (btnTransfer.IsHandleCreated)
+                {
+                    try
+                    {
+                        DisableButtonsCB d = DisableButtons;
+                        btnTransfer.Invoke(d);
+                    }
+                    catch (Exception ex) when (ex is ObjectDisposedException || ex is InvalidOperationException)
+                    {
+                        Runtime.MessageCollector.AddExceptionMessage("DisableButtons (UI.Window.SSHTransferWindow) Invoke failed", ex);
+                    }
+                }
             }
             else
             {
