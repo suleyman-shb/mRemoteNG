@@ -20,8 +20,9 @@ Configuration Options
 - **User** - Username for account to log on to remote host.
 - **Password** - Password for account to log on to remote host.
 - **Protocol** - Choice of SCP or SFTP protocol used for communication.
-- **Local File** - Path of file to transfer from local host.
-- **Remote File** - Path where file will be transferred on remote host. (e.g. "/home/John/Documents")
+- **Direction** - Choice of Upload (Local to Remote) or Download (Remote to Local).
+- **Local File** - Path of file on the local host.
+- **Remote File** - Path of file on the remote host. (e.g. "/home/John/Documents/file.txt")
 
 Using SSH File Transfer
 =======================
@@ -41,7 +42,7 @@ complete a file transfer over SSH.
 - To populate the **Remote File** option, manually type desired filesystem path,
   including the desired file name.
 
-Once all options are populated, select **Transfer** and the progress bar at
+Once all options are populated, select **Upload** or **Download** (the button text changes based on the selected direction) and the progress bar at
 the bottom of the window will show the progress of the transfer.
 
 Troubleshooting SSH File Transfer
