@@ -1,4 +1,4 @@
-﻿using mRemoteNG.App;
+using mRemoteNG.App;
 using System;
 using System.IO;
 using System.Threading;
@@ -38,6 +38,10 @@ namespace mRemoteNG.UI.Window
         private MrngTextBox txtLocalFile;
         private MrngLabel lblLocalFile;
         private MrngGroupBox grpFiles;
+        private MrngGroupBox grpDirection;
+        private MrngRadioButton radDirectionUpload;
+        private MrngRadioButton radDirectionDownload;
+        private MrngLabel lblDirection;
 
         private void InitializeComponent()
         {
@@ -63,8 +67,13 @@ namespace mRemoteNG.UI.Window
             txtPassword = new MrngTextBox();
             txtUser = new MrngTextBox();
             pbStatus = new MrngProgressBar();
+            grpDirection = new MrngGroupBox();
+            radDirectionUpload = new MrngRadioButton();
+            radDirectionDownload = new MrngRadioButton();
+            lblDirection = new MrngLabel();
             grpFiles.SuspendLayout();
             grpConnection.SuspendLayout();
+            grpDirection.SuspendLayout();
             SuspendLayout();
             // 
             // grpFiles
@@ -76,7 +85,7 @@ namespace mRemoteNG.UI.Window
             grpFiles.Controls.Add(lblRemoteFile);
             grpFiles.Controls.Add(btnBrowse);
             grpFiles.FlatStyle = FlatStyle.Flat;
-            grpFiles.Location = new System.Drawing.Point(12, 172);
+            grpFiles.Location = new System.Drawing.Point(12, 228);
             grpFiles.Name = "grpFiles";
             grpFiles.Size = new System.Drawing.Size(668, 175);
             grpFiles.TabIndex = 2000;
@@ -282,18 +291,66 @@ namespace mRemoteNG.UI.Window
             // 
             // pbStatus
             // 
-            pbStatus.Location = new System.Drawing.Point(12, 353);
+            pbStatus.Location = new System.Drawing.Point(12, 409);
             pbStatus.Name = "pbStatus";
             pbStatus.Size = new System.Drawing.Size(668, 23);
             pbStatus.Style = ProgressBarStyle.Continuous;
             pbStatus.TabIndex = 3000;
             // 
+            // grpDirection
+            //
+            grpDirection.Controls.Add(radDirectionUpload);
+            grpDirection.Controls.Add(radDirectionDownload);
+            grpDirection.Controls.Add(lblDirection);
+            grpDirection.FlatStyle = FlatStyle.Flat;
+            grpDirection.Location = new System.Drawing.Point(12, 172);
+            grpDirection.Name = "grpDirection";
+            grpDirection.Size = new System.Drawing.Size(668, 50);
+            grpDirection.TabIndex = 1500;
+            grpDirection.TabStop = false;
+            grpDirection.Text = "Direction";
+            //
+            // radDirectionUpload
+            //
+            radDirectionUpload.AutoSize = true;
+            radDirectionUpload.Checked = true;
+            radDirectionUpload.FlatStyle = FlatStyle.Flat;
+            radDirectionUpload.Location = new System.Drawing.Point(105, 19);
+            radDirectionUpload.Name = "radDirectionUpload";
+            radDirectionUpload.Size = new System.Drawing.Size(59, 17);
+            radDirectionUpload.TabIndex = 10;
+            radDirectionUpload.TabStop = true;
+            radDirectionUpload.Text = "Upload";
+            radDirectionUpload.UseVisualStyleBackColor = true;
+            radDirectionUpload.CheckedChanged += new EventHandler(radDirection_CheckedChanged);
+            //
+            // radDirectionDownload
+            //
+            radDirectionDownload.AutoSize = true;
+            radDirectionDownload.FlatStyle = FlatStyle.Flat;
+            radDirectionDownload.Location = new System.Drawing.Point(200, 19);
+            radDirectionDownload.Name = "radDirectionDownload";
+            radDirectionDownload.Size = new System.Drawing.Size(73, 17);
+            radDirectionDownload.TabIndex = 20;
+            radDirectionDownload.Text = "Download";
+            radDirectionDownload.UseVisualStyleBackColor = true;
+            //
+            // lblDirection
+            //
+            lblDirection.AutoSize = true;
+            lblDirection.Location = new System.Drawing.Point(6, 21);
+            lblDirection.Name = "lblDirection";
+            lblDirection.Size = new System.Drawing.Size(57, 13);
+            lblDirection.TabIndex = 0;
+            lblDirection.Text = "Direction:";
+            //
             // SSHTransferWindow
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new System.Drawing.Size(692, 423);
+            ClientSize = new System.Drawing.Size(692, 450);
             Controls.Add(grpFiles);
+            Controls.Add(grpDirection);
             Controls.Add(grpConnection);
             Controls.Add(pbStatus);
             Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular,
@@ -306,6 +363,8 @@ namespace mRemoteNG.UI.Window
             grpFiles.PerformLayout();
             grpConnection.ResumeLayout(false);
             grpConnection.PerformLayout();
+            grpDirection.ResumeLayout(false);
+            grpDirection.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -314,6 +373,7 @@ namespace mRemoteNG.UI.Window
         #region Private Properties
 
         private readonly OpenFileDialog oDlg;
+        private readonly SaveFileDialog sDlg;
 
         #endregion
 
@@ -359,8 +419,7 @@ namespace mRemoteNG.UI.Window
         private void ApplyLanguage()
         {
             grpFiles.Text = Language.Files;
-            lblLocalFile.Text = Language.LocalFile + ":";
-            lblRemoteFile.Text = Language.RemoteFile + ":";
+            UpdateFileLabels();
             btnBrowse.Text = Language._Browse;
             grpConnection.Text = Language.Connection;
             lblProtocol.Text = Language.Protocol;
@@ -368,9 +427,32 @@ namespace mRemoteNG.UI.Window
             lblUser.Text = Language.User + ":";
             lblPort.Text = Language.Port;
             lblHost.Text = Language.Host + ":";
-            btnTransfer.Text = Language.Transfer;
+            grpDirection.Text = Language.Direction;
+            lblDirection.Text = Language.Direction + ":";
+            radDirectionUpload.Text = Language.Upload;
+            radDirectionDownload.Text = Language.Download;
+            UpdateTransferButtonText();
             TabText = Language.Transfer;
             Text = Language.Transfer;
+        }
+
+        private void UpdateFileLabels()
+        {
+            if (radDirectionUpload.Checked)
+            {
+                lblLocalFile.Text = Language.Source + " (" + Language.LocalFile + "):";
+                lblRemoteFile.Text = Language.Destination + " (" + Language.RemoteFile + "):";
+            }
+            else
+            {
+                lblLocalFile.Text = Language.Destination + " (" + Language.LocalFile + "):";
+                lblRemoteFile.Text = Language.Source + " (" + Language.RemoteFile + "):";
+            }
+        }
+
+        private void UpdateTransferButtonText()
+        {
+            btnTransfer.Text = radDirectionUpload.Checked ? Language.Upload : Language.Download;
         }
 
         #endregion
@@ -378,6 +460,7 @@ namespace mRemoteNG.UI.Window
         #region Private Methods
 
         private SecureTransfer st;
+        private long remoteFileSize;
 
         private void StartTransfer(SecureTransfer.SSHTransferProtocol Protocol)
         {
@@ -387,7 +470,7 @@ namespace mRemoteNG.UI.Window
                 return;
             }
 
-            if (File.Exists(txtLocalFile.Text) == false)
+            if (radDirectionUpload.Checked && File.Exists(txtLocalFile.Text) == false)
             {
                 Runtime.MessageCollector.AddMessage(MessageClass.WarningMsg, Language.LocalFileDoesNotExist);
                 return;
@@ -395,8 +478,12 @@ namespace mRemoteNG.UI.Window
 
             try
             {
+                SecureTransfer.SSHTransferDirection direction = radDirectionUpload.Checked
+                    ? SecureTransfer.SSHTransferDirection.Upload
+                    : SecureTransfer.SSHTransferDirection.Download;
+
                 st = new SecureTransfer(txtHost.Text, txtUser.Text, txtPassword.Text, int.Parse(txtPort.Text), Protocol,
-                                        txtLocalFile.Text, txtRemoteFile.Text);
+                                        direction, txtLocalFile.Text, txtRemoteFile.Text);
 
                 // Connect creates the protocol objects and makes the initial connection.
                 st.Connect();
@@ -404,10 +491,17 @@ namespace mRemoteNG.UI.Window
                 switch (Protocol)
                 {
                     case SecureTransfer.SSHTransferProtocol.SCP:
-                        st.ScpClt.Uploading += ScpClt_Uploading;
+                        if (direction == SecureTransfer.SSHTransferDirection.Upload)
+                            st.ScpClt.Uploading += ScpClt_Uploading;
+                        else
+                            st.ScpClt.Downloading += ScpClt_Downloading;
                         break;
                     case SecureTransfer.SSHTransferProtocol.SFTP:
                         st.asyncCallback = AsyncCallback;
+                        if (direction == SecureTransfer.SSHTransferDirection.Download)
+                        {
+                            remoteFileSize = st.SftpClt.GetAttributes(st.RemotePath).Size;
+                        }
                         break;
                 }
 
@@ -418,7 +512,8 @@ namespace mRemoteNG.UI.Window
             }
             catch (Exception ex)
             {
-                Runtime.MessageCollector.AddExceptionStackTrace(Language.SshTransferFailed, ex);
+                string msg = radDirectionUpload.Checked ? Language.SshTransferUploadFailed : Language.SshTransferDownloadFailed;
+                Runtime.MessageCollector.AddExceptionStackTrace(msg, ex);
                 st?.Disconnect();
                 st?.Dispose();
             }
@@ -431,13 +526,28 @@ namespace mRemoteNG.UI.Window
 
         private void ScpClt_Uploading(object sender, Renci.SshNet.Common.ScpUploadEventArgs e)
         {
+            SshTransfer_Progress(e.Uploaded, e.Size);
+        }
+
+        private void ScpClt_Downloading(object sender, Renci.SshNet.Common.ScpDownloadEventArgs e)
+        {
+            SshTransfer_Progress(e.Downloaded, e.Size);
+        }
+
+        private void SshTransfer_Progress(long transferred, long total)
+        {
             // If the file size is over 2 gigs, convert to kb. This means we'll support a 2TB file.
-            int max = e.Size > int.MaxValue ? Convert.ToInt32(e.Size / 1024) : Convert.ToInt32(e.Size);
+            int max = total > int.MaxValue ? Convert.ToInt32(total / 1024) : Convert.ToInt32(total);
+            int cur = total > int.MaxValue ? Convert.ToInt32(transferred / 1024) : Convert.ToInt32(transferred);
 
-            // yes, compare to size since that's the total/original file size
-            int cur = e.Size > int.MaxValue ? Convert.ToInt32(e.Uploaded / 1024) : Convert.ToInt32(e.Uploaded);
+            SshTransfer_Progress_Update(cur, max);
+        }
 
-            SshTransfer_Progress(cur, max);
+        private void SshTransfer_Progress_Update(int cur, int max)
+        {
+            maxVal = max;
+            curVal = cur;
+            SetStatus();
         }
 
         private void StartTransferBG()
@@ -446,29 +556,51 @@ namespace mRemoteNG.UI.Window
             {
                 DisableButtons();
                 Runtime.MessageCollector.AddMessage(MessageClass.InformationMsg,
-                                                    $"Transfer of {Path.GetFileName(st.SrcFile)} started.", true);
-                st.Upload();
+                                                    $"Transfer of {Path.GetFileName(st.LocalPath)} started.", true);
+                if (st.Direction == SecureTransfer.SSHTransferDirection.Upload)
+                    st.Upload();
+                else
+                    st.Download();
 
                 // SftpClient is Asynchronous, so we need to wait here after the upload and handle the status directly since no status events are raised.
                 if (st.Protocol == SecureTransfer.SSHTransferProtocol.SFTP)
                 {
-                    FileInfo fi = new(st.SrcFile);
-                    while (!st.asyncResult.IsCompleted)
+                    while (true)
                     {
-                        int max = fi.Length > int.MaxValue
-                            ? Convert.ToInt32(fi.Length / 1024)
-                            : Convert.ToInt32(fi.Length);
+                        bool isCompleted;
+                        long transferred;
+                        long total;
 
-                        int cur = fi.Length > int.MaxValue
-                            ? Convert.ToInt32(st.asyncResult.UploadedBytes / 1024)
-                            : Convert.ToInt32(st.asyncResult.UploadedBytes);
-                        SshTransfer_Progress(cur, max);
+                        if (st.Direction == SecureTransfer.SSHTransferDirection.Upload)
+                        {
+                            isCompleted = st.asyncResult.IsCompleted;
+                            transferred = st.asyncResult.UploadedBytes;
+                            total = new FileInfo(st.LocalPath).Length;
+                        }
+                        else
+                        {
+                            isCompleted = st.asyncDownloadResult.IsCompleted;
+                            transferred = st.asyncDownloadResult.DownloadedBytes;
+                            total = remoteFileSize;
+                        }
+
+                        int max = total > int.MaxValue
+                            ? Convert.ToInt32(total / 1024)
+                            : Convert.ToInt32(total);
+
+                        int cur = total > int.MaxValue
+                            ? Convert.ToInt32(transferred / 1024)
+                            : Convert.ToInt32(transferred);
+
+                        SshTransfer_Progress_Update(cur, max);
+
+                        if (isCompleted) break;
                         Thread.Sleep(50);
                     }
                 }
 
                 Runtime.MessageCollector.AddMessage(MessageClass.InformationMsg,
-                                                    $"Transfer of {Path.GetFileName(st.SrcFile)} completed.", true);
+                                                    $"Transfer of {Path.GetFileName(st.LocalPath)} completed.", true);
                 st.Disconnect();
                 st.Dispose();
                 EnableButtons();
@@ -496,7 +628,7 @@ namespace mRemoteNG.UI.Window
                     }
                 }
 
-                if (txtRemoteFile.Text.EndsWith("/") || txtRemoteFile.Text.EndsWith("\\"))
+                if (radDirectionUpload.Checked && (txtRemoteFile.Text.EndsWith("/") || txtRemoteFile.Text.EndsWith("\\")))
                 {
                     txtRemoteFile.Text +=
                         txtLocalFile.Text.Substring(txtLocalFile.Text.LastIndexOf("\\", StringComparison.Ordinal) + 1);
@@ -560,14 +692,6 @@ namespace mRemoteNG.UI.Window
             }
         }
 
-        private void SshTransfer_Progress(int transferredBytes, int totalBytes)
-        {
-            maxVal = totalBytes;
-            curVal = transferredBytes;
-
-            SetStatus();
-        }
-
         #endregion
 
         #region Public Methods
@@ -583,6 +707,13 @@ namespace mRemoteNG.UI.Window
                 Filter = @"All Files (*.*)|*.*",
                 CheckFileExists = true
             };
+
+            sDlg = new SaveFileDialog
+            {
+                Filter = @"All Files (*.*)|*.*",
+                CheckPathExists = true,
+                OverwritePrompt = true
+            };
         }
 
         #endregion
@@ -591,10 +722,11 @@ namespace mRemoteNG.UI.Window
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            if (oDlg.ShowDialog() != DialogResult.OK) return;
-            if (oDlg.FileName != "")
+            FileDialog dialog = radDirectionUpload.Checked ? (FileDialog)oDlg : (FileDialog)sDlg;
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+            if (dialog.FileName != "")
             {
-                txtLocalFile.Text = oDlg.FileName;
+                txtLocalFile.Text = dialog.FileName;
             }
         }
 
@@ -608,6 +740,12 @@ namespace mRemoteNG.UI.Window
             {
                 StartTransfer(SecureTransfer.SSHTransferProtocol.SFTP);
             }
+        }
+
+        private void radDirection_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateFileLabels();
+            UpdateTransferButtonText();
         }
 
         #endregion

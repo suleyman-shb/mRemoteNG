@@ -2595,4 +2595,22 @@ Nightly Channel includes Alphas, Betas &amp; Release Candidates.</value>
   <data name="MaxSimultaneousConnections" xml:space="preserve">
     <value>Maximum simultaneous connections</value>
   </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="SshTransferUploadFailed" xml:space="preserve">
+    <value>SSH Upload failed</value>
+  </data>
+  <data name="SshTransferDownloadFailed" xml:space="preserve">
+    <value>SSH Download failed</value>
+  </data>
 </root>

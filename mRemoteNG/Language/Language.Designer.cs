@@ -1783,9 +1783,45 @@ namespace mRemoteNG.Resources.Language {
         /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
+        internal static string Destination {
+            get {
+                return ResourceManager.GetString("Destination", resourceCulture);
+            }
+        }
+
+        internal static string Direction {
+            get {
+                return ResourceManager.GetString("Direction", resourceCulture);
+            }
+        }
+
         internal static string Download {
             get {
                 return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+
+        internal static string Source {
+            get {
+                return ResourceManager.GetString("Source", resourceCulture);
+            }
+        }
+
+        internal static string SshTransferDownloadFailed {
+            get {
+                return ResourceManager.GetString("SshTransferDownloadFailed", resourceCulture);
+            }
+        }
+
+        internal static string SshTransferUploadFailed {
+            get {
+                return ResourceManager.GetString("SshTransferUploadFailed", resourceCulture);
+            }
+        }
+
+        internal static string Upload {
+            get {
+                return ResourceManager.GetString("Upload", resourceCulture);
             }
         }
         
