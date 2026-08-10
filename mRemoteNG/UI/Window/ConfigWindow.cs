@@ -629,15 +629,25 @@ namespace mRemoteNG.UI.Window
 
         private void ShowStatusImage(Image image)
         {
-            if (_pGrid.InvokeRequired)
+            try
             {
-                ShowStatusImageCb d = ShowStatusImage;
-                _pGrid.Invoke(d, image);
+                if (_pGrid.IsDisposed || _pGrid.Disposing) return;
+
+                if (_pGrid.InvokeRequired)
+                {
+                    if (!_pGrid.IsHandleCreated) return;
+                    ShowStatusImageCb d = ShowStatusImage;
+                    _pGrid.Invoke(d, image);
+                }
+                else
+                {
+                    _btnHostStatus.Image = image;
+                    _btnHostStatus.Tag = "checkfinished";
+                }
             }
-            else
+            catch (ObjectDisposedException)
             {
-                _btnHostStatus.Image = image;
-                _btnHostStatus.Tag = "checkfinished";
+                // Control is disposed, nothing to do.
             }
         }
 
