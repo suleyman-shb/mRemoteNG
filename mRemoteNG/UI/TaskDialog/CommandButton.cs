@@ -164,6 +164,20 @@ namespace mRemoteNG.UI.TaskDialog
         }
 
         //--------------------------------------------------------------------------------
+        protected override void OnGotFocus(EventArgs e)
+        {
+            Invalidate();
+            base.OnGotFocus(e);
+        }
+
+        //--------------------------------------------------------------------------------
+        protected override void OnLostFocus(EventArgs e)
+        {
+            Invalidate();
+            base.OnLostFocus(e);
+        }
+
+        //--------------------------------------------------------------------------------
         protected override void OnPaint(PaintEventArgs e)
         {
             if (!_themeManager.ActiveAndExtended)
@@ -246,6 +260,13 @@ namespace mRemoteNG.UI.TaskDialog
             }
 
             e.Graphics.DrawImage(img, new Point(LEFT_MARGIN, TOP_MARGIN + (int)(szL.Height / 2) - img.Height / 2));
+
+            if (Focused)
+            {
+                var focusRect = newRect;
+                focusRect.Inflate(-2, -2);
+                ControlPaint.DrawFocusRectangle(e.Graphics, focusRect);
+            }
         }
 
         //--------------------------------------------------------------------------------
